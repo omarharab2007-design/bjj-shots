@@ -264,6 +264,35 @@ footer .soc{display:flex;gap:26px;justify-content:center}
 footer .soc a{font-family:var(--display);font-size:18px;color:var(--paper);letter-spacing:.04em;text-transform:uppercase}
 footer .soc a:hover{color:var(--red)}
 
+/* ---------- outro: logo reveal (iris opens, focus pulls, shutter fires) ---------- */
+#outro{position:relative;height:280vh}
+#outro .stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;padding-bottom:10vh}
+#outro .lens{position:relative;width:min(62vh,78vw);aspect-ratio:1;display:grid;place-items:center;clip-path:circle(0% at 50% 50%);background:radial-gradient(circle at 50% 45%,#1C1C20 0%,var(--ink) 68%)}
+#outro .lens img{width:82%;height:82%;object-fit:contain;will-change:filter,transform}
+#outro .ring{position:absolute;width:min(70vh,88vw);aspect-ratio:1;pointer-events:none;opacity:0}
+#outro .ring circle{fill:none;stroke:var(--line);stroke-width:1}
+#outro .ring .ticks{stroke:var(--mute);stroke-width:1;stroke-dasharray:1 7.6}
+#outro .af{position:absolute;width:min(66vh,84vw);aspect-ratio:1;pointer-events:none;opacity:0}
+#outro .af i{position:absolute;width:30px;height:30px;border:0 solid var(--paper);transition:border-color .2s}
+#outro .af i:nth-child(1){left:0;top:0;border-left-width:2px;border-top-width:2px}
+#outro .af i:nth-child(2){right:0;top:0;border-right-width:2px;border-top-width:2px}
+#outro .af i:nth-child(3){left:0;bottom:0;border-left-width:2px;border-bottom-width:2px}
+#outro .af i:nth-child(4){right:0;bottom:0;border-right-width:2px;border-bottom-width:2px}
+#outro.locked .af i{border-color:var(--red)}
+#outro .read{position:absolute;left:6vw;bottom:6vh;color:var(--mute);display:flex;flex-direction:column;gap:6px}
+#outro .read b{color:var(--paper);font-weight:500}
+#outro.locked .read .st b{color:var(--red)}
+#outro .cnt{position:absolute;right:6vw;bottom:6vh;color:var(--mute)}
+#outro .tag{position:absolute;left:0;right:0;bottom:7vh;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(26px,3.4vw,54px);line-height:1;color:var(--paper)}
+#outro .tag span{display:inline-block;opacity:0;transform:translateY(.5em);transition:opacity .6s,transform .8s cubic-bezier(.2,.8,.1,1)}
+#outro .tag em{color:var(--red)}
+#outro.shot .tag span{opacity:1;transform:none}
+#outro .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;mix-blend-mode:screen}
+#outro.shot .flash{animation:flash .7s ease-out}
+@keyframes flash{0%{opacity:.85}100%{opacity:0}}
+@media (max-width:760px){#outro .read{left:16px;bottom:24px}#outro .cnt{right:16px;bottom:24px}#outro .tag{bottom:17vh;padding:0 16px}}
+@media (prefers-reduced-motion:reduce){#outro{height:auto}#outro .stage{position:relative}#outro .lens{clip-path:none}#outro .ring,#outro .af{opacity:1}#outro .tag span{opacity:1;transform:none}#outro.shot .flash{animation:none}}
+
 /* ---------- lightbox ---------- */
 .lb{position:fixed;inset:0;z-index:85;background:rgba(5,5,6,.94);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .35s}
 .lb.on{opacity:1;pointer-events:auto}
@@ -550,6 +579,19 @@ footer .soc a:hover{color:var(--red)}
   </div>
 </section>
 
+<!-- 9. OUTRO: logo reveal -->
+<section id="outro" aria-label="BJJ Shots">
+  <div class="stage">
+    <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="98"/><circle class="ticks" cx="100" cy="100" r="93"/></svg>
+    <div class="lens"><img src="logo.png" alt="BJJ Shots, est. 2026"></div>
+    <div class="af" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="flash" aria-hidden="true"></div>
+    <p class="tag" aria-label="Capturing Jiu-Jitsu in the Gulf"><span>Capturing</span> <span>Jiu-Jitsu</span> <span><em>in the Gulf.</em></span></p>
+    <div class="read mono" aria-hidden="true"><span>Aperture <b id="oF">f/22</b></span><span>Focus <b id="oD">0.3 m</b></span><span class="st">Status <b id="oS">Hunting</b></span></div>
+    <div class="cnt mono" aria-hidden="true" id="oN">Frame 2399 / 2400</div>
+  </div>
+</section>
+
 <footer>
   <img src="logo.png" alt="BJJ Shots, est. 2026">
   <div class="soc">
@@ -752,6 +794,8 @@ const shL = $('#shL'), shR = $('#shR'), shN = $('#shN'), ratio = $('#ratio'), tc
 const work = $('#work'), wBar = $('#wBar'), wNow = $('#wNow');
 const meter = $('#meter'), frameEl = $('#frame'), clock = $('#clock');
 let lastY = scrollY, vel = 0, bandX = 0, tallOn = false;
+const outro = $('#outro'), oLens = $('#outro .lens'), oImg = $('#outro .lens img'), oRing = $('#outro .ring'), oAf = $('#outro .af'),
+  oF = $('#oF'), oD = $('#oD'), oS = $('#oS'), oN = $('#oN');
 const prog = el => { const r = el.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight)); };
 
 function tick(now) {
@@ -805,6 +849,28 @@ function tick(now) {
     const lean = clamp(vel * .25, -12, 12);
     band1.style.transform = `translate3d(${bandX}px,0,0) skewX(${-lean}deg)`;
     band2.style.transform = `translate3d(${-bw - bandX}px,0,0) skewX(${lean}deg)`;
+  }
+
+  // outro: the iris opens on the logo, focus pulls it sharp, then the shutter fires once
+  if (outro) {
+    const op = reduce ? 1 : prog(outro), io = ease(clamp(op / .38)), fo = ease(clamp((op - .3) / .42));
+    if (!reduce) {
+      oLens.style.clipPath = `circle(${io * 72}% at 50% 50%)`;
+      oImg.style.filter = `blur(${(1 - fo) * 22}px) brightness(${.55 + fo * .45})`;
+      oImg.style.transform = `scale(${1.28 - fo * .28}) rotate(${(1 - fo) * -6}deg)`;
+      oRing.style.opacity = io; oRing.style.transform = `rotate(${op * 140}deg)`;
+      const a = clamp((op - .22) / .5), sc = 1.5 - ease(a) * .5;
+      oAf.style.opacity = clamp((op - .2) / .1); oAf.style.transform = `scale(${sc})`;
+    }
+    const fs = [22, 16, 11, 8, 5.6, 4, 2.8, 2, 1.4];
+    oF.textContent = 'f/' + fs[Math.min(fs.length - 1, Math.floor(clamp(op / .74) * fs.length))];
+    oD.textContent = fo > .98 ? '∞' : (0.3 + fo * 9.7).toFixed(1) + ' m';
+    const locked = op > .74;
+    outro.classList.toggle('locked', locked);
+    oS.textContent = op > .8 ? 'Shot' : locked ? 'AF lock' : 'Hunting';
+    oN.textContent = op > .8 ? 'Frame 2400 / 2400' : 'Frame 2399 / 2400';
+    if (op > .8 && !outro.classList.contains('shot')) outro.classList.add('shot');
+    else if (op < .6 && outro.classList.contains('shot')) outro.classList.remove('shot');
   }
 
   // rail: page progress as a frame counter
