@@ -1,0 +1,147 @@
+{
+ "updated": "2026-11-19",
+ "source": "manual",
+ "note": "Newest first. The Instagram sync rewrites this file; to add one by hand, put a new item at the top.",
+ "items": [
+  {
+   "id": "r05",
+   "title": "Wallace",
+   "tag": "Gi",
+   "date": "2026-05",
+   "video": "media/reels/r05.mp4",
+   "loop": "media/reels/r05-loop.mp4",
+   "poster": "media/reels/r05.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r07",
+   "title": "Isa",
+   "tag": "Gi · Juniors",
+   "date": "2026-05",
+   "video": "media/reels/r07.mp4",
+   "loop": "media/reels/r07-loop.mp4",
+   "poster": "media/reels/r07.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r11",
+   "title": "Aylla",
+   "tag": "Gi",
+   "date": "2026-05",
+   "video": "media/reels/r11.mp4",
+   "loop": "media/reels/r11-loop.mp4",
+   "poster": "media/reels/r11.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r01",
+   "title": "Pouya",
+   "tag": "No-Gi",
+   "date": "2026-04",
+   "video": "media/reels/r01.mp4",
+   "loop": "media/reels/r01-loop.mp4",
+   "poster": "media/reels/r01.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r03",
+   "title": "AJP Tour",
+   "tag": "Gi · UAE",
+   "date": "2026-04",
+   "video": "media/reels/r03.mp4",
+   "loop": "media/reels/r03-loop.mp4",
+   "poster": "media/reels/r03.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r08",
+   "title": "The next ones",
+   "tag": "Gi · Juniors",
+   "date": "2026-04",
+   "video": "media/reels/r08.mp4",
+   "loop": "media/reels/r08-loop.mp4",
+   "poster": "media/reels/r08.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r10",
+   "title": "Arms wide",
+   "tag": "Gi",
+   "date": "2026-04",
+   "video": "media/reels/r10.mp4",
+   "loop": "media/reels/r10-loop.mp4",
+   "poster": "media/reels/r10.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r13",
+   "title": "Red belt, blue gi",
+   "tag": "Gi",
+   "date": "2026-04",
+   "video": "media/reels/r13.mp4",
+   "loop": "media/reels/r13-loop.mp4",
+   "poster": "media/reels/r13.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r02",
+   "title": "Under the lights",
+   "tag": "No-Gi",
+   "date": "2026-03",
+   "video": "media/reels/r02.mp4",
+   "loop": "media/reels/r02-loop.mp4",
+   "poster": "media/reels/r02.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r04",
+   "title": "The walk-out",
+   "tag": "No-Gi",
+   "date": "2026-03",
+   "video": "media/reels/r04.mp4",
+   "loop": "media/reels/r04-loop.mp4",
+   "poster": "media/reels/r04.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r06",
+   "title": "Big screen",
+   "tag": "Gi",
+   "date": "2026-03",
+   "video": "media/reels/r06.mp4",
+   "loop": "media/reels/r06-loop.mp4",
+   "poster": "media/reels/r06.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r09",
+   "title": "Denis",
+   "tag": "Gi",
+   "date": "2026-03",
+   "video": "media/reels/r09.mp4",
+   "loop": "media/reels/r09-loop.mp4",
+   "poster": "media/reels/r09.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r12",
+   "title": "Little lions",
+   "tag": "Gi · Kids",
+   "date": "2026-03",
+   "video": "media/reels/r12.mp4",
+   "loop": "media/reels/r12-loop.mp4",
+   "poster": "media/reels/r12.jpg",
+   "permalink": null
+  },
+  {
+   "id": "r14",
+   "title": "Federation mats",
+   "tag": "Gi",
+   "date": "2026-03",
+   "video": "media/reels/r14.mp4",
+   "loop": "media/reels/r14-loop.mp4",
+   "poster": "media/reels/r14.jpg",
+   "permalink": null
+  }
+ ]
+}

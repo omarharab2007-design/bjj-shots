@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a Shoot | BJJ Shots</title>
+<meta name="description" content="Book BJJ Shots to film your matches, your competition or your gym. Send a brief on WhatsApp or email, anywhere in the UAE and the Gulf.">
+<meta property="og:image" content="media/reels/r01.jpg">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+#top{padding:18vh var(--gut) 0}
+.knock{position:relative;overflow:hidden;border-radius:12px;isolation:isolate;background:#000}
+.knock video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.knock h1{position:relative;z-index:1;background:var(--ink);color:#fff;mix-blend-mode:multiply;font-family:var(--display);font-weight:400;font-size:clamp(90px,19vw,340px);line-height:.82;text-transform:uppercase;letter-spacing:-.01em;padding:.07em 0 .03em;text-align:center;white-space:nowrap}
+.lede{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-top:5vh;flex-wrap:wrap}
+.lede p{font-family:var(--serif);font-style:italic;font-size:clamp(28px,3vw,46px);line-height:1.05;max-width:720px}
+
+/* two paths */
+#paths{padding:10vh var(--gut) 4vh}
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.path{position:relative;border-radius:14px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:16px;min-height:360px;overflow:hidden;isolation:isolate}
+.path.a{background:var(--red);color:#fff}
+.path.b{background:var(--ink2);border:1px solid var(--line)}
+.path .mono{opacity:.85}
+.path h2{font-family:var(--display);font-weight:400;font-size:clamp(44px,5vw,88px);line-height:.86;text-transform:uppercase}
+.path h2 em{font-family:var(--serif);font-style:italic;text-transform:none;font-weight:400}
+.path.b h2 em{color:var(--red)}
+.path p{max-width:440px;font-size:16px}
+.path.b p{color:var(--soft)}
+.path .act{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.path.a .btn{background:#fff;color:var(--red)}
+.path.a .btn.ghost{background:transparent;border-color:#fff;color:#fff}
+.path.a .btn.ghost:hover{background:#fff;color:var(--red)}
+.path .soon{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.9;max-width:300px}
+.path img.bg{position:absolute;right:-6%;bottom:-12%;width:46%;z-index:-1;opacity:.16;filter:grayscale(1);pointer-events:none}
+
+/* brief + direct lines */
+#brief-sec{padding:10vh var(--gut) 6vh}
+.grid2{display:grid;grid-template-columns:1fr 1.3fr;gap:6vw}
+.direct h3{font-family:var(--serif);font-style:italic;font-size:clamp(30px,3vw,46px);line-height:1.05;font-weight:400;margin-bottom:28px}
+.direct a.line{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0;border-bottom:1px solid var(--line);font-family:var(--display);font-size:clamp(22px,2.2vw,34px);text-transform:uppercase;letter-spacing:.01em;transition:color .3s,padding .4s var(--ease)}
+.direct a.line small{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--mute);white-space:nowrap}
+.direct a.line:hover{color:var(--red);padding-left:12px}
+.direct .where{margin-top:30px;color:var(--mute);line-height:1.8}
+form.brief{display:grid;grid-template-columns:1fr 1fr;gap:26px 22px}
+.brief label.f{display:flex;flex-direction:column;gap:8px}
+.brief .full{grid-column:1/-1}
+.brief .mono{color:var(--mute)}
+.brief input:not([type=radio]),.brief textarea{font:inherit;font-size:17px;color:var(--paper);background:transparent;border:0;border-bottom:1px solid #3A3A40;padding:10px 0;outline:none;border-radius:0;transition:border-color .3s;width:100%}
+.brief textarea{min-height:110px;resize:vertical}
+.brief input:focus,.brief textarea:focus{border-color:var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.chips label{position:relative}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border:1px solid #3A3A40;border-radius:999px;font-size:14px;cursor:pointer;transition:all .25s}
+.chips input:checked+span{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.chips input:focus-visible+span{outline:2px solid var(--red);outline-offset:2px}
+.brief .f.only-athlete{display:none}
+.brief.athlete .f.only-athlete{display:flex}
+.sends{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.formnote{grid-column:1/-1;color:var(--mute);font-size:13px;margin-top:-10px}
+
+@media (max-width:760px){
+  #top{padding:13vh var(--gut) 0}
+  .knock h1{font-size:22vw}
+  .lede p{font-size:26px}
+  #paths{padding:7vh var(--gut) 2vh}
+  .paths{grid-template-columns:1fr}
+  .path{min-height:0}
+  #brief-sec{padding:8vh var(--gut) 4vh}
+  .grid2{grid-template-columns:1fr;gap:8vh}
+  form.brief{grid-template-columns:1fr}
+  .sends .btn{flex:1;justify-content:center}
+}
+</style>
+</head>
+<body data-page="contact">
+<main>
+
+<section id="top" aria-labelledby="bookH">
+  <div class="knock">
+    <video muted loop playsinline preload="none" data-src="media/reels/r01-loop.mp4" data-always="1"></video>
+    <h1 id="bookH">Let's roll</h1>
+  </div>
+  <div class="lede">
+    <p>Tell us the event, the date and the mats. We'll bring the cameras.</p>
+    <span class="mono" style="color:var(--mute)">UAE · Across the Gulf</span>
+  </div>
+</section>
+
+<section id="paths" aria-label="Ways to book">
+  <div class="paths">
+    <div class="path a rv">
+      <span class="mono">For athletes</span>
+      <h2>Film my<br><em>matches</em></h2>
+      <p>Competing soon? Book us for your division and get your matches filmed and cut into highlights you can post.</p>
+      <div class="act" id="athleteAct"></div>
+      <img class="bg" src="logo.png" alt="">
+    </div>
+    <div class="path b rv" style="transition-delay:.08s">
+      <span class="mono">For organisers &amp; gyms</span>
+      <h2>Cover my<br><em>event or gym</em></h2>
+      <p>Competitions, seminars, open mats and monthly gym content. Send a brief and we come back with dates and the rate card.</p>
+      <div class="act"><a class="btn" href="#brief-sec" data-type="Competition / event coverage">Send a brief →</a><a class="btn ghost small" href="clients.html">See gym work</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="brief-sec" aria-labelledby="briefH">
+  <div class="kicker mono"><b>(02)</b> <span id="briefH">The brief</span></div>
+  <div class="grid2">
+    <div class="direct">
+      <h3>Rather just message? Go direct.</h3>
+      <a class="line" id="dWa" target="_blank" rel="noopener"><span id="dWaL"></span> <small>WhatsApp ↗</small></a>
+      <a class="line" id="dMail"><span id="dMailL"></span> <small>Email ↗</small></a>
+      <a class="line" id="dIg" target="_blank" rel="noopener"><span id="dIgL"></span> <small>Instagram ↗</small></a>
+      <p class="where mono">Based in the UAE<br>Abu Dhabi · Dubai · Across the Gulf</p>
+    </div>
+    <form class="brief" id="brief">
+      <label class="f"><span class="mono">Name</span><input name="name" required autocomplete="name"></label>
+      <label class="f"><span class="mono">Email or phone</span><input name="reach" required autocomplete="email"></label>
+      <div class="full"><span class="mono" id="typeL">What are we shooting?</span>
+        <div class="chips" role="radiogroup" aria-labelledby="typeL">
+          <label><input type="radio" name="type" value="Film my matches (athlete)"><span>Film my matches</span></label>
+          <label><input type="radio" name="type" value="Competition / event coverage" checked><span>Competition / event</span></label>
+          <label><input type="radio" name="type" value="Gym content package"><span>Gym content package</span></label>
+          <label><input type="radio" name="type" value="Something else"><span>Something else</span></label>
+        </div>
+      </div>
+      <label class="f"><span class="mono">Competition, event or gym</span><input name="event"></label>
+      <label class="f"><span class="mono">Date</span><input name="date" placeholder="e.g. 14 March"></label>
+      <label class="f only-athlete"><span class="mono">Division &amp; belt</span><input name="division" placeholder="e.g. Adult male, blue, -76 kg"></label>
+      <label class="f only-athlete"><span class="mono">Team / academy</span><input name="team"></label>
+      <label class="f full"><span class="mono">Message</span><textarea name="msg"></textarea></label>
+      <div class="sends">
+        <button class="btn" type="submit" value="wa">Send on WhatsApp <span>→</span></button>
+        <button class="btn ghost" type="submit" value="mail">Send by email</button>
+      </div>
+      <p class="formnote">Opens WhatsApp or your email app with the brief filled in. Nothing is sent until you press send there.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(() => {
+const { $, $$, CFG, wa, mail, ig, esc, watch } = BJJ;
+watch();
+$('#dWa').href = wa(); $('#dWaL').textContent = CFG.whatsappLabel;
+$('#dMail').href = 'mailto:' + CFG.email; $('#dMailL').textContent = CFG.email;
+$('#dIg').href = ig; $('#dIgL').textContent = '@' + CFG.instagram;
+
+/* athlete booking: the payment link when it exists, a brief until then */
+$('#athleteAct').innerHTML = CFG.bookingUrl
+  ? `<a class="btn" href="${esc(CFG.bookingUrl)}" target="_blank" rel="noopener">${esc(CFG.bookingLabel || 'Book & pay')} ↗</a><a class="btn ghost small" href="#brief-sec" data-type="Film my matches (athlete)">Ask first</a>`
+  : `<a class="btn" href="#brief-sec" data-type="Film my matches (athlete)">Request a spot →</a><span class="soon">Online booking &amp; payment opens soon. Until then, send your division and we hold your spot.</span>`;
+
+const form = $('#brief');
+const setType = v => { const r = $$('input[name=type]', form).find(x => x.value === v); if (r) { r.checked = true; sync(); } };
+const sync = () => form.classList.toggle('athlete', form.type.value.startsWith('Film my matches'));
+form.addEventListener('change', sync);
+document.addEventListener('click', e => { const a = e.target.closest('[data-type]'); if (a) setType(a.dataset.type); });
+const q = new URLSearchParams(location.search).get('type');
+if (q === 'gym') setType('Gym content package'); else if (q === 'athlete') setType('Film my matches (athlete)'); else if (q === 'event') setType('Competition / event coverage');
+sync();
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const f = new FormData(form), via = e.submitter?.value || 'wa', ath = f.get('type').startsWith('Film my matches');
+  const L = [`Name: ${f.get('name')}`, `Contact: ${f.get('reach')}`, `Shoot: ${f.get('type')}`, `Event or gym: ${f.get('event') || '-'}`, `Date: ${f.get('date') || '-'}`];
+  if (ath) L.push(`Division: ${f.get('division') || '-'}`, `Team: ${f.get('team') || '-'}`);
+  const body = `${L.join('\n')}\n\n${f.get('msg') || ''}`.trim();
+  if (via === 'mail') location.href = mail(`${f.get('type')}: ${f.get('event') || f.get('name')}`, body);
+  else window.open(wa(`Hi BJJ Shots, here's my brief:\n\n${body}`), '_blank', 'noopener');
+});
+})();
+</script>
+</body>
+</html>

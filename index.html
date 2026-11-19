@@ -4,29 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BJJ Shots | Jiu-Jitsu Film & Photo in the Gulf</title>
-<meta name="description" content="BJJ Shots films and photographs Jiu-Jitsu across the Gulf: competition highlights, event coverage and gym content, cut fast and built for the feed.">
+<meta name="description" content="BJJ Shots films and photographs Jiu-Jitsu across the Gulf: competition highlights, photo galleries from every event, and content for gyms and academies.">
+<meta property="og:title" content="BJJ Shots | Jiu-Jitsu Film & Photo in the Gulf">
+<meta property="og:description" content="Competition highlights, event photo galleries and gym content across the UAE.">
+<meta property="og:image" content="media/hero-wide.jpg">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Permanent+Marker&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="media/hero-wide.jpg">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-:root{
-  --ink:#0B0B0C; --ink2:#141416; --line:#26262A; --paper:#EFEBE4; --mute:#8D8981;
-  --red:#E8361E; --edge:#F0A23B; --gold:#E9C46A;
-  --display:'Anton',Impact,sans-serif; --serif:'Instrument Serif',Georgia,serif;
-  --body:'Inter Tight',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --marker:'Permanent Marker',cursive;
-  --rail:56px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--ink);color:var(--paper);-webkit-text-size-adjust:100%}
-body{font-family:var(--body);background:var(--ink);overflow-x:hidden;line-height:1.45}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left}
-img,video{display:block;max-width:100%}
-::selection{background:var(--red);color:#fff}
-.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
-
 /* ---------- loader: an aperture opening ---------- */
 #loader{position:fixed;inset:0;z-index:100;background:var(--ink);display:grid;place-items:center;pointer-events:none}
 #loader .iris{width:120px;height:120px}
@@ -35,37 +23,6 @@ img,video{display:block;max-width:100%}
 #loader .lbl{position:absolute;bottom:40px;right:32px}
 #loader.open{clip-path:circle(0% at 50% 50%);transition:clip-path 1s cubic-bezier(.7,0,.2,1) .1s}
 #loader.gone{display:none}
-
-/* ---------- chrome: grain, rail, nav, cursor ---------- */
-.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.07;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grain 1s steps(6) infinite}
-@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}100%{transform:translate(0,0)}}
-.rail{position:fixed;left:0;top:0;bottom:0;width:var(--rail);z-index:60;border-right:1px solid rgba(239,235,228,.12);background:rgba(11,11,12,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:18px 0}
-.rail .mark{width:34px;height:34px}
-.rail .vert{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;color:var(--mute)}
-.rail .meter{width:2px;height:120px;background:rgba(239,235,228,.15);position:relative;overflow:hidden}
-.rail .meter i{position:absolute;left:0;top:0;width:100%;height:100%;background:var(--red);transform-origin:top;transform:scaleY(0)}
-.rail .fr{color:var(--paper)}
-.nav{position:fixed;top:0;left:var(--rail);right:0;z-index:55;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:20px 28px;mix-blend-mode:difference;color:#fff}
-.nav .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:22px;letter-spacing:.02em}
-.nav .links{display:flex;gap:34px}
-.nav .links a{font-family:var(--display);font-size:17px;letter-spacing:.04em;position:relative}
-.nav .links a sup{font-family:var(--mono);font-size:9px;color:#fff;margin-left:3px;vertical-align:top}
-.nav .links a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:#fff;transform:scaleX(0);transform-origin:right;transition:transform .35s cubic-bezier(.7,0,.2,1)}
-.nav .links a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav .cta{justify-self:end;font-family:var(--display);font-size:17px;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
-.nav .cta b{width:9px;height:9px;border-radius:50%;background:#fff;animation:blink 1.2s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
-.cursor{position:fixed;left:0;top:0;z-index:95;pointer-events:none;width:14px;height:14px;margin:-7px 0 0 -7px;border:1.5px solid #fff;border-radius:50%;mix-blend-mode:difference;transition:width .25s,height .25s,margin .25s,background .25s,opacity .2s;display:grid;place-items:center}
-.cursor span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:#000;opacity:0;transition:opacity .2s}
-.cursor.play{width:84px;height:84px;margin:-42px 0 0 -42px;background:#fff}
-.cursor.play span{opacity:1}
-.cursor.hide,.cursor.idle{opacity:0}
-@media (pointer:coarse){.cursor{display:none}}
-
-main{padding-left:var(--rail)}
-section{position:relative}
 
 /* ---------- 1. hero: full frame that finds its 9:16 shape ---------- */
 #hero{height:270vh}
@@ -93,7 +50,7 @@ section{position:relative}
 .wordmark{position:relative;font-family:var(--display);font-weight:400;font-size:clamp(84px,17.5vw,300px);line-height:.82;letter-spacing:-.005em;color:var(--paper);text-transform:uppercase;white-space:nowrap}
 .wordmark .clip{display:inline-block;overflow:hidden;vertical-align:top;padding-top:.04em}
 .wordmark .ch{display:inline-block;transform:translateY(105%)}
-.wordmark .ch.in{transform:none;transition:transform 1s cubic-bezier(.2,.8,.1,1)}
+.wordmark .ch.in{transform:none;transition:transform 1s var(--ease)}
 .wordmark .reg{position:absolute;top:.08em;right:-.3em;font-family:var(--mono);font-size:.075em;border:2px solid currentColor;border-radius:50%;width:1.7em;height:1.7em;display:grid;place-items:center;letter-spacing:0}
 .wordmark .script{position:absolute;right:-.04em;bottom:-.34em;font-family:var(--serif);font-style:italic;font-size:.4em;color:var(--red);letter-spacing:-.01em;text-transform:none;transform:rotate(-7deg);text-shadow:0 4px 30px rgba(0,0,0,.4);line-height:1;opacity:0;transition:opacity .8s 1s}
 .wordmark.in .script{opacity:1}
@@ -105,20 +62,17 @@ section{position:relative}
 .hero-foot .roll{justify-self:end;font-family:var(--display);font-size:15px;letter-spacing:.05em;display:flex;gap:8px;align-items:center}
 .cuts{position:absolute;right:40px;top:50%;transform:translateY(-50%);z-index:6;display:flex;flex-direction:column;gap:8px;will-change:opacity}
 .cuts .mono{color:var(--paper);margin-bottom:4px;text-align:right}
-.cuts button{width:58px;height:74px;border-radius:6px;overflow:hidden;border:1.5px solid rgba(239,235,228,.35);transition:transform .35s cubic-bezier(.2,.8,.1,1),border-color .3s;margin-left:auto}
+.cuts button{width:58px;height:74px;border-radius:6px;overflow:hidden;border:1.5px solid rgba(239,235,228,.35);transition:transform .35s var(--ease),border-color .3s;margin-left:auto}
 .cuts button:hover{transform:translateX(-8px) scale(1.08);border-color:var(--paper)}
 .cuts img{width:100%;height:100%;object-fit:cover}
 .shape{position:absolute;inset:0;z-index:3;pointer-events:none;display:flex;align-items:center;justify-content:space-between;padding:0 4vw}
 .shape .big{font-family:var(--display);font-size:clamp(60px,10vw,180px);line-height:.85;text-transform:uppercase;will-change:transform,opacity;opacity:0}
 .shape .big em{font-family:var(--serif);font-style:italic;text-transform:none;color:var(--red);font-weight:400}
 .shape-note{position:absolute;left:0;right:0;bottom:5vh;z-index:3;display:flex;justify-content:space-between;padding:0 4vw;opacity:0;pointer-events:none}
-.shape-note p{max-width:290px;color:#CFCAC1;line-height:1.6}
+.shape-note p{max-width:290px;color:var(--soft);line-height:1.6}
 
 /* ---------- 2. scoreboard ---------- */
 #numbers{padding:18vh 6vw 16vh}
-.kicker{display:flex;align-items:center;gap:14px;color:var(--mute);margin-bottom:28px}
-.kicker b{color:var(--red);font-weight:500}
-.kicker::after{content:"";flex:1;height:1px;background:var(--line)}
 .board{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.5)}
 .board .head,.board .row{display:grid;grid-template-columns:10px 1.6fr repeat(3,1fr) 1.2fr;align-items:stretch}
 .board .head{background:var(--ink2);border-bottom:1px solid var(--line)}
@@ -142,88 +96,57 @@ section{position:relative}
 .board .row.b .clock .t a{border-bottom:2px solid var(--red)}
 .board-foot{display:flex;justify-content:space-between;gap:20px;margin-top:16px;color:var(--mute)}
 
-/* ---------- 3. film strip ---------- */
-#work{height:420vh}
-#work .pin{display:flex;flex-direction:column;justify-content:center}
-.work-head{padding:0 6vw;margin:4vh 0 6vh;display:flex;justify-content:space-between;align-items:end;gap:20px;z-index:2}
-.work-head h2,.sel-head h2{font-family:var(--display);font-weight:400;font-size:clamp(46px,7vw,120px);line-height:.85;text-transform:uppercase}
-.work-head h2 em,.sel-head h2 em{font-family:var(--serif);font-style:italic;text-transform:none;color:var(--red);font-weight:400}
-.work-head p{max-width:280px;color:#CFCAC1;font-size:15px}
-.film{position:relative;background:#050505;padding:40px 0 34px;border-top:1px solid #1b1b1b;border-bottom:1px solid #1b1b1b}
-.film::before,.film::after{content:"";position:absolute;left:0;right:0;height:12px;background:repeating-linear-gradient(90deg,transparent 0 10px,#262626 10px 24px,transparent 24px 34px)}
-.film::before{top:8px}.film::after{bottom:8px}
-.track{display:flex;gap:18px;padding:0 6vw;will-change:transform;width:max-content}
-.frame{position:relative;flex:none;width:calc(min(46vh,520px) * 9 / 16)}
-@media (pointer:fine){.frame{cursor:none}}
-.frame .shot{position:relative;display:block;aspect-ratio:9/16;border-radius:4px;overflow:hidden;background:#111;transition:transform .6s cubic-bezier(.2,.8,.1,1)}
-.frame video,.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.frame .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.75));transition:opacity .4s}
-.frame:hover .shot{transform:scale(1.035)}
-.frame:hover .shot::after{opacity:.35}
-.frame .edge{position:absolute;top:-22px;left:0;right:0;display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--edge)}
-.frame .cap{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;display:block}
-.frame .cap b{display:block;font-family:var(--display);font-weight:400;font-size:22px;line-height:1;text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px}
-.frame .cap .mono{color:#CFCAC1;font-size:10px}
-.frame .no{position:absolute;top:10px;left:12px;z-index:2;font-family:var(--display);font-size:15px;color:var(--paper)}
-.frame.endcard .shot{display:flex;flex-direction:column;justify-content:space-between;padding:20px;background:var(--red)}
-.frame.endcard .shot::after{display:none}
-.frame.endcard b{font-family:var(--display);font-weight:400;font-size:40px;line-height:.92;text-transform:uppercase;color:#fff}
-.work-meter{position:absolute;left:6vw;right:6vw;bottom:7vh;display:flex;align-items:center;gap:16px;color:var(--mute)}
-.work-meter .bar{flex:1;height:1px;background:var(--line);position:relative}
-.work-meter .bar i{position:absolute;left:0;top:-1px;height:3px;width:100%;background:var(--paper);transform-origin:left;transform:scaleX(0)}
+/* ---------- 3. four doors ---------- */
+#doors{padding:6vh 6vw 16vh}
+.doors-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:6vh}
+.doors-head p{max-width:300px;color:var(--soft);font-size:15px}
+.doors{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.door{position:relative;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:3/5;border-radius:10px;overflow:hidden;background:#111;padding:20px;isolation:isolate}
+.door video,.door img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1s var(--ease),filter .5s;filter:grayscale(.55) brightness(.62)}
+.door::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,11,12,.55),transparent 40%,rgba(11,11,12,.9))}
+.door:hover video,.door:hover img,.door:focus-visible video,.door:focus-visible img{transform:scale(1.06);filter:none}
+.door .top{display:flex;justify-content:space-between;color:var(--soft)}
+.door .top b{color:var(--red);font-weight:500}
+.door h3{font-family:var(--display);font-weight:400;font-size:clamp(38px,3.8vw,64px);line-height:.88;text-transform:uppercase}
+.door h3 em{display:block;font-family:var(--serif);font-style:italic;text-transform:none;color:var(--red);font-size:.62em;line-height:1.1;margin-top:.12em}
+.door p{color:var(--soft);font-size:14px;margin-top:12px;max-width:260px}
+.door .go{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:14px;border-top:1px solid rgba(239,235,228,.25);font-family:var(--display);font-size:17px;letter-spacing:.04em;text-transform:uppercase}
+.door .go span:last-child{transition:transform .4s var(--ease)}
+.door:hover .go span:last-child{transform:translateX(6px) rotate(-30deg)}
+.door .live{display:inline-flex;align-items:center;gap:6px}
+.door .live i{width:7px;height:7px;border-radius:50%;background:var(--red);animation:blink 1s steps(2) infinite}
 
 /* ---------- 4. manifesto with inline clips ---------- */
-#manifesto{padding:22vh 6vw 20vh}
+#manifesto{padding:16vh 6vw 20vh}
 .mani{font-family:var(--display);font-size:clamp(38px,5.6vw,96px);line-height:1.04;text-transform:uppercase;letter-spacing:.005em;max-width:1500px}
 .mani .w{opacity:.14;transition:opacity .35s}
 .mani .w.on{opacity:1}
 .mani .w.red.on{color:var(--red)}
 .mani .w.it{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0}
-.mani .pill{display:inline-block;vertical-align:middle;width:1.8em;height:.84em;border-radius:999px;overflow:hidden;margin:0 .06em;position:relative;top:-.06em;transform:scaleX(.15);opacity:.2;transition:transform .7s cubic-bezier(.2,.8,.1,1),opacity .4s;background:#1a1a1a}
+.mani .pill{display:inline-block;vertical-align:middle;width:1.8em;height:.84em;border-radius:999px;overflow:hidden;margin:0 .06em;position:relative;top:-.06em;transform:scaleX(.15);opacity:.2;transition:transform .7s var(--ease),opacity .4s;background:#1a1a1a}
 .mani .pill.on{transform:none;opacity:1}
 .mani .pill video{width:100%;height:100%;object-fit:cover}
 .sig{display:flex;gap:18px;align-items:center;margin-top:7vh;color:var(--mute)}
 .sig img{width:52px;height:52px}
 
-/* ---------- 5. contact sheet ---------- */
-#selects{padding:14vh 6vw 16vh;background:#E9E5DD;color:var(--ink)}
-#selects .kicker{color:#6B675F}
-#selects .kicker::after{background:#CFC9BE}
-.sel-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:7vh}
-.sel-head p{max-width:300px;font-size:15px;color:#4A4741}
-.sheet{background:#0E0E0F;padding:40px 22px 22px;border-radius:6px;box-shadow:0 30px 70px rgba(0,0,0,.25);display:grid;grid-template-columns:repeat(7,1fr);gap:36px 10px;position:relative}
-.sheet .cell{position:relative}
-.sheet .cell .num{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--edge);margin-bottom:5px}
-.sheet .ph{position:relative;aspect-ratio:9/16;overflow:hidden;background:#222}
-@media (pointer:fine){.sheet .ph{cursor:none}}
-.sheet .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2) contrast(1.05);transition:filter .4s}
-.sheet .ph:hover img{filter:none}
-.sheet svg.mk{position:absolute;left:-12%;top:2%;width:124%;height:110%;pointer-events:none;overflow:visible;z-index:2}
-.sheet svg.mk path{fill:none;stroke:var(--red);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.sheet .note{position:absolute;z-index:3;top:-30px;font-family:var(--marker);color:var(--red);font-size:clamp(14px,1.3vw,21px);white-space:nowrap;transform:rotate(-8deg);opacity:0;transition:opacity .5s 1.2s}
-.sheet.drawn .note{opacity:1}
-.loupe{position:fixed;left:0;top:0;width:210px;height:210px;margin:-105px 0 0 -105px;border-radius:50%;z-index:80;pointer-events:none;border:3px solid #fff;box-shadow:0 20px 50px rgba(0,0,0,.45),inset 0 0 0 1px rgba(0,0,0,.4);background-repeat:no-repeat;background-color:#111;opacity:0;scale:.6;transition:opacity .2s,scale .25s cubic-bezier(.2,.8,.1,1)}
-.loupe.on{opacity:1;scale:1}
-.loupe::after{content:"3.2×";position:absolute;right:20px;bottom:26px;font-family:var(--mono);font-size:10px;color:#fff;background:rgba(0,0,0,.55);padding:2px 5px;border-radius:3px}
-@media (pointer:coarse){.loupe{display:none}}
-
-/* ---------- 6. services as rounds ---------- */
-#services{padding:18vh 6vw 14vh}
+/* ---------- 5. services as rounds ---------- */
+#services{padding:10vh 6vw 14vh}
 .rounds{border-top:1px solid var(--line)}
 .round{display:grid;grid-template-columns:120px 1fr 380px 110px;gap:30px;align-items:center;padding:4.2vh 0;border-bottom:1px solid var(--line);position:relative}
 @media (pointer:fine){.round{cursor:none}}
 .round .rd{color:var(--mute)}
 .round .rd b{display:block;font-family:var(--display);font-size:40px;color:var(--paper);letter-spacing:0;font-weight:400;line-height:1}
-.round h3{font-family:var(--display);font-size:clamp(40px,6vw,104px);line-height:.88;text-transform:uppercase;font-weight:400;transition:transform .5s cubic-bezier(.2,.8,.1,1),color .3s}
+.round h3{font-family:var(--display);font-size:clamp(40px,6vw,104px);line-height:.88;text-transform:uppercase;font-weight:400;transition:transform .5s var(--ease),color .3s}
 .round:hover h3{transform:translateX(18px);color:var(--red)}
-.round p{color:#CFCAC1;font-size:15px}
+.round p{color:var(--soft);font-size:15px}
+.round p a{color:var(--paper);border-bottom:1px solid var(--red)}
 .round .tm{font-family:var(--display);font-size:30px;text-align:right;color:var(--mute);font-variant-numeric:tabular-nums}
 .round:hover .tm{color:var(--paper)}
-.peek{position:fixed;left:0;top:0;width:200px;aspect-ratio:9/16;margin:-178px 0 0 -100px;border-radius:10px;overflow:hidden;z-index:70;pointer-events:none;opacity:0;scale:.4;rotate:-8deg;transition:opacity .3s,scale .45s cubic-bezier(.2,.8,.1,1),rotate .45s;box-shadow:0 30px 60px rgba(0,0,0,.5);background:#111}
+.peek{position:fixed;left:0;top:0;width:200px;aspect-ratio:9/16;margin:-178px 0 0 -100px;border-radius:10px;overflow:hidden;z-index:70;pointer-events:none;opacity:0;scale:.4;rotate:-8deg;transition:opacity .3s,scale .45s var(--ease),rotate .45s;box-shadow:0 30px 60px rgba(0,0,0,.5);background:#111}
 .peek.on{opacity:1;scale:1;rotate:-4deg}
 .peek video{width:100%;height:100%;object-fit:cover}
 
-/* ---------- 7. filmed-at band ---------- */
+/* ---------- 6. filmed-at band ---------- */
 #events{padding:8vh 0 10vh;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 #events .kicker{padding:0 6vw}
 .band{display:flex;white-space:nowrap;will-change:transform;width:max-content}
@@ -232,39 +155,15 @@ section{position:relative}
 .band.out span{color:transparent;-webkit-text-stroke:1.5px var(--paper)}
 .band.out span i{-webkit-text-stroke:0;color:var(--edge)}
 
-/* ---------- 8. contact ---------- */
-#contact{padding:16vh 6vw 6vh}
-.knock{position:relative;overflow:hidden;border-radius:12px;isolation:isolate;background:#000}
+/* ---------- 7. book band: video inside the letters ---------- */
+#book{padding:16vh 6vw 4vh}
+.knock{position:relative;display:block;overflow:hidden;border-radius:12px;isolation:isolate;background:#000}
 .knock video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .knock h2{position:relative;z-index:1;background:var(--ink);color:#fff;mix-blend-mode:multiply;font-family:var(--display);font-weight:400;font-size:clamp(90px,19vw,340px);line-height:.82;text-transform:uppercase;letter-spacing:-.01em;padding:.07em 0 .03em;text-align:center;white-space:nowrap}
-.contact-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:6vw;margin-top:9vh}
-.direct h3{font-family:var(--serif);font-style:italic;font-size:clamp(30px,3vw,46px);line-height:1.05;font-weight:400;margin-bottom:28px}
-.direct a.line{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0;border-bottom:1px solid var(--line);font-family:var(--display);font-size:clamp(22px,2.2vw,34px);text-transform:uppercase;letter-spacing:.01em;transition:color .3s,padding .4s cubic-bezier(.2,.8,.1,1)}
-.direct a.line small{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--mute);white-space:nowrap}
-.direct a.line:hover{color:var(--red);padding-left:12px}
-form.brief{display:grid;grid-template-columns:1fr 1fr;gap:26px 22px}
-.brief label.f{display:flex;flex-direction:column;gap:8px}
-.brief .full{grid-column:1/-1}
-.brief .mono{color:var(--mute)}
-.brief input:not([type=radio]),.brief textarea{font:inherit;font-size:17px;color:var(--paper);background:transparent;border:0;border-bottom:1px solid #3A3A40;padding:10px 0;outline:none;border-radius:0;transition:border-color .3s;width:100%}
-.brief textarea{min-height:110px;resize:vertical}
-.brief input:focus,.brief textarea:focus{border-color:var(--red)}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.chips label{position:relative}
-.chips input{position:absolute;opacity:0;pointer-events:none}
-.chips span{display:inline-block;padding:10px 16px;border:1px solid #3A3A40;border-radius:999px;font-size:14px;cursor:pointer;transition:all .25s}
-.chips input:checked+span{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-.chips input:focus-visible+span{outline:2px solid var(--red);outline-offset:2px}
-.send{grid-column:1/-1;justify-self:start;display:flex;align-items:center;gap:14px;background:var(--red);color:#fff;font-family:var(--display);font-size:22px;letter-spacing:.04em;text-transform:uppercase;padding:18px 30px;border-radius:999px;transition:transform .3s cubic-bezier(.2,.8,.1,1)}
-.send:hover{transform:scale(1.04) rotate(-1.5deg)}
-.formnote{grid-column:1/-1;color:var(--mute);font-size:13px;margin-top:-10px}
-footer{display:grid;grid-template-columns:auto 1fr auto;gap:30px;align-items:end;padding:10vh 6vw 30px;color:var(--mute)}
-footer img{width:82px;height:82px}
-footer .soc{display:flex;gap:26px;justify-content:center}
-footer .soc a{font-family:var(--display);font-size:18px;color:var(--paper);letter-spacing:.04em;text-transform:uppercase}
-footer .soc a:hover{color:var(--red)}
+.book-row{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:5vh;flex-wrap:wrap}
+.book-row p{font-family:var(--serif);font-style:italic;font-size:clamp(26px,2.6vw,40px);line-height:1.1;max-width:620px}
 
-/* ---------- outro: logo reveal (iris opens, focus pulls, shutter fires) ---------- */
+/* ---------- 8. outro: logo reveal ---------- */
 #outro{position:relative;height:280vh}
 #outro .stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;padding-bottom:10vh}
 #outro .lens{position:relative;width:min(62vh,78vw);aspect-ratio:1;display:grid;place-items:center;clip-path:circle(0% at 50% 50%);background:radial-gradient(circle at 50% 45%,#1C1C20 0%,var(--ink) 68%)}
@@ -284,43 +183,20 @@ footer .soc a:hover{color:var(--red)}
 #outro.locked .read .st b{color:var(--red)}
 #outro .cnt{position:absolute;right:6vw;bottom:6vh;color:var(--mute)}
 #outro .tag{position:absolute;left:0;right:0;bottom:7vh;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(26px,3.4vw,54px);line-height:1;color:var(--paper)}
-#outro .tag span{display:inline-block;opacity:0;transform:translateY(.5em);transition:opacity .6s,transform .8s cubic-bezier(.2,.8,.1,1)}
+#outro .tag span{display:inline-block;opacity:0;transform:translateY(.5em);transition:opacity .6s,transform .8s var(--ease)}
 #outro .tag em{color:var(--red)}
 #outro.shot .tag span{opacity:1;transform:none}
 #outro .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;mix-blend-mode:screen}
 #outro.shot .flash{animation:flash .7s ease-out}
 @keyframes flash{0%{opacity:.85}100%{opacity:0}}
-@media (max-width:760px){#outro .read{left:16px;bottom:24px}#outro .cnt{right:16px;bottom:24px}#outro .tag{bottom:17vh;padding:0 16px}}
-@media (prefers-reduced-motion:reduce){#outro{height:auto}#outro .stage{position:relative}#outro .lens{clip-path:none}#outro .ring,#outro .af{opacity:1}#outro .tag span{opacity:1;transform:none}#outro.shot .flash{animation:none}}
 
-/* ---------- lightbox ---------- */
-.lb{position:fixed;inset:0;z-index:85;background:rgba(5,5,6,.94);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .35s}
-.lb.on{opacity:1;pointer-events:auto}
-.lb .box{position:relative;height:min(86vh,980px);aspect-ratio:9/16;max-width:92vw;transform:scale(.92);transition:transform .5s cubic-bezier(.2,.8,.1,1)}
-.lb.on .box{transform:none}
-.lb video{width:100%;height:100%;object-fit:contain;background:#000;border-radius:8px}
-.lb .x{position:fixed;top:22px;right:26px;font-family:var(--display);font-size:20px;letter-spacing:.06em;display:flex;align-items:center;gap:10px;z-index:2;cursor:pointer}
-.lb .x b{display:grid;place-items:center;width:42px;height:42px;border:1.5px solid var(--paper);border-radius:50%;font-family:var(--body);font-weight:400;font-size:22px}
-.lb .t{position:fixed;left:calc(var(--rail) + 26px);bottom:24px;font-family:var(--display);font-size:clamp(30px,4vw,64px);text-transform:uppercase;line-height:.9}
-.lb .t small{display:block;margin-bottom:8px}
-.lb.on ~ .cursor{opacity:0}
-
-/* ---------- reveal helper ---------- */
-.rv{opacity:0;transform:translateY(40px);transition:opacity .9s,transform 1s cubic-bezier(.2,.8,.1,1)}
-.rv.in{opacity:1;transform:none}
-
-/* ---------- responsive ---------- */
 @media (max-width:1100px){
   .round{grid-template-columns:90px 1fr 90px}
   .round p{grid-column:2/3}
-  .sheet{grid-template-columns:repeat(5,1fr)}
-  .sheet .cell:nth-child(n+11){display:none}
+  .doors{grid-template-columns:repeat(2,1fr)}
+  .door{aspect-ratio:4/5}
 }
 @media (max-width:760px){
-  :root{--rail:0px}
-  .rail{display:none}
-  .nav{grid-template-columns:1fr auto;padding:16px}
-  .nav .links{display:none}
   .hud .rec,.hud .tc{top:14px}
   .hero-media .shade{background:linear-gradient(180deg,rgba(11,11,12,.6) 0%,rgba(11,11,12,.1) 30%,rgba(11,11,12,.25) 60%,rgba(11,11,12,.92) 100%)}
   .wordmark{font-size:22vw}
@@ -346,32 +222,28 @@ footer .soc a:hover{color:var(--red)}
   .board .clock{grid-column:2/5;border-left:0;border-top:1px solid var(--line);padding:16px}
   .board .row.b .cell{display:none}
   .board-foot{flex-direction:column;gap:6px}
-  .work-head{padding:0 16px;margin:0 0 5vh;flex-direction:column;align-items:start;gap:12px}
-  .work-head p{font-size:14px}
-  .frame{width:calc(44vh * 9 / 16)}
-  .work-meter{left:16px;right:16px;bottom:6vh}
-  #manifesto{padding:14vh 16px}
-  #selects{padding:12vh 16px}
-  .sel-head{flex-direction:column;align-items:start}
-  .sheet{grid-template-columns:repeat(3,1fr);padding:30px 12px 16px;gap:30px 8px}
-  .sheet .cell:nth-child(n+10){display:none}
-  #services{padding:12vh 16px}
+  #doors{padding:4vh 16px 12vh}
+  .doors-head{flex-direction:column;align-items:start;gap:14px}
+  .doors{grid-template-columns:1fr;gap:12px}
+  .door{aspect-ratio:auto;min-height:62vw;padding:18px}
+  .door h3{font-size:12vw}
+  #manifesto{padding:12vh 16px 14vh}
+  #services{padding:8vh 16px 12vh}
   .round{grid-template-columns:1fr auto;gap:10px 16px}
   .round h3{grid-column:1/-1;font-size:12.5vw}
   .round p{grid-column:1/-1}
   .round .tm{grid-row:1;grid-column:2}
-  #contact{padding:12vh 16px 4vh}
+  #book{padding:12vh 16px 2vh}
   .knock h2{font-size:22vw}
-  .contact-grid{grid-template-columns:1fr}
-  form.brief{grid-template-columns:1fr}
-  footer{grid-template-columns:1fr;padding:8vh 16px 24px;justify-items:start}
-  footer .soc{justify-content:start}
-  .lb .t{left:16px;font-size:30px}
+  #outro .read{left:16px;bottom:24px}#outro .cnt{right:16px;bottom:24px}#outro .tag{bottom:17vh;padding:0 16px}
 }
-@media (prefers-reduced-motion:reduce){.grain{animation:none}}
+@media (prefers-reduced-motion:reduce){
+  #outro{height:auto}#outro .stage{position:relative}#outro .lens{clip-path:none}#outro .ring,#outro .af{opacity:1}#outro .tag span{opacity:1;transform:none}#outro.shot .flash{animation:none}
+  .door .live i,.hud .rec b{animation:none}
+}
 </style>
 </head>
-<body>
+<body data-page="home">
 
 <div id="loader" aria-hidden="true">
   <svg class="iris" viewBox="-50 -50 100 100">
@@ -381,37 +253,15 @@ footer .soc a:hover{color:var(--red)}
   <div class="count" id="lcount">00</div>
   <div class="lbl mono">Racking focus</div>
 </div>
-
-<div class="grain" aria-hidden="true"></div>
-<div class="loupe" aria-hidden="true"></div>
 <div class="peek" aria-hidden="true"><video muted loop playsinline preload="none"></video></div>
-
-<aside class="rail" aria-hidden="true">
-  <img class="mark" src="logo.png" alt="">
-  <span class="vert mono">Capturing Jiu-Jitsu in the Gulf</span>
-  <div class="meter"><i id="meter"></i></div>
-  <span class="vert mono fr" id="frame">FR 0001</span>
-  <span class="vert mono">Est 2026</span>
-</aside>
-
-<nav class="nav">
-  <a class="brand" href="#hero">BJJ SHOTS</a>
-  <div class="links">
-    <a href="#work">Work<sup>14</sup></a>
-    <a href="#selects">Stills</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <a class="cta" href="#contact"><b></b>Let's roll</a>
-</nav>
 
 <main>
 
-<!-- 1. HERO -->
+<!-- 1. HERO: the Pouya film (raw/Sequence-02_2-1.mp4 → media/hero-wide.mp4 + media/hero-tall.mp4; swap with tools/set-hero.sh) -->
 <section id="hero">
   <div class="pin">
     <div class="hero-media" id="heroMedia">
-      <img class="poster" src="media/hero-wide.jpg" alt="Two no-gi athletes scrambling under the arena lights">
+      <img class="poster" src="media/hero-wide.jpg" alt="Pouya in a no-gi scramble under the arena lights">
       <video class="wide" muted loop playsinline autoplay preload="auto"></video>
       <video class="tall" muted loop playsinline preload="none"></video>
       <div class="shade"></div>
@@ -430,7 +280,7 @@ footer .soc a:hover{color:var(--red)}
     </div>
     <div class="shape-note" id="shN">
       <p class="mono">Every highlight is framed for the phone, cut on the beat and posted while the medals are still warm.</p>
-      <p class="mono" style="text-align:right">Keep scrolling to roll the tape ↓</p>
+      <p class="mono" style="text-align:right">Keep scrolling ↓</p>
     </div>
 
     <div class="hero-copy" id="heroCopy">
@@ -439,22 +289,18 @@ footer .soc a:hover{color:var(--red)}
         <span class="reg" aria-hidden="true">®</span>
         <span class="script" aria-hidden="true">in the Gulf</span>
       </h1>
-      <p class="statement">We film Jiu-Jitsu the way it feels on the mat: fast, close and loud. Competition highlights, event coverage and gym content across the UAE.</p>
+      <p class="statement">We film Jiu-Jitsu the way it feels on the mat: fast, close and loud. Competition highlights, event photo galleries and gym content across the UAE.</p>
     </div>
 
     <div class="cuts" id="cuts">
       <span class="mono">Latest cuts</span>
-      <button data-reel="r03" aria-label="Play the AJP Tour highlight"><img src="media/reels/r03.jpg" alt=""></button>
-      <button data-reel="r09" aria-label="Play Denis's highlight"><img src="media/reels/r09.jpg" alt=""></button>
-      <button data-reel="r11" aria-label="Play Aylla's highlight"><img src="media/reels/r11.jpg" alt=""></button>
-      <button data-reel="r05" aria-label="Play Wallace's highlight"><img src="media/reels/r05.jpg" alt=""></button>
     </div>
 
     <div class="hero-foot" id="heroFoot">
       <dl><dt class="mono">Based in</dt><dd>The UAE</dd><dt></dt><dd>Across the Gulf</dd></dl>
       <dl><dt class="mono">Coverage</dt><dd>Competitions</dd><dt></dt><dd>Events</dd><dt></dt><dd>Gyms</dd></dl>
       <dl><dt class="mono">Reach</dt><dd>5M+ views</dd></dl>
-      <a class="roll" href="#contact">Let's roll <span>↘</span></a>
+      <a class="roll" href="contact.html">Book a shoot <span>↘</span></a>
     </div>
   </div>
 </section>
@@ -478,49 +324,62 @@ footer .soc a:hover{color:var(--red)}
       <div class="cell"><span class="v">–</span></div>
       <div class="cell"><span class="v">–</span></div>
       <div class="cell"><span class="v">–</span></div>
-      <div class="clock"><span class="t"><a href="#contact">Book the<br>mat-side spot</a></span></div>
+      <div class="clock"><span class="t"><a href="contact.html">Book the<br>mat-side spot</a></span></div>
     </div>
   </div>
   <div class="board-foot mono"><span>5,589 people follow the feed on Instagram</span><span>Event coverage · Competition highlights</span></div>
 </section>
 
-<!-- 3. FILM STRIP -->
-<section id="work">
-  <div class="pin">
-    <div class="work-head">
-      <h2>Competition<br><em>highlights</em></h2>
-      <p>Fourteen cuts from the mats of the Gulf. Each one plays as it rolls past; tap any frame to watch it with sound.</p>
-    </div>
-    <div class="film"><div class="track" id="track"></div></div>
-    <div class="work-meter mono"><span id="wNow">01</span><div class="bar"><i id="wBar"></i></div><span>14</span></div>
+<!-- 3. FOUR DOORS -->
+<section id="doors">
+  <div class="kicker mono"><b>(02)</b> Pick your door</div>
+  <div class="doors-head">
+    <h2 class="h-big">Four ways<br><em>onto the mat</em></h2>
+    <p>Watch the latest cuts, find your photos from the weekend, see what we make for gyms, or book us for your next event.</p>
+  </div>
+  <div class="doors">
+    <a class="door rv" href="highlights.html">
+      <video muted loop playsinline preload="none" data-src="media/reels/r09-loop.mp4"></video>
+      <div class="top mono"><span><b>01</b> Highlights</span><span class="live"><i></i>Weekly</span></div>
+      <div><h3>Competition<em>highlights</em></h3><p>The newest cuts from the mats, straight from our Instagram.</p>
+        <div class="go"><span>Watch</span><span>→</span></div></div>
+    </a>
+    <a class="door rv" href="gallery.html" style="transition-delay:.08s">
+      <img src="media/stills/s03.jpg" alt="" loading="lazy">
+      <div class="top mono"><span><b>02</b> Gallery</span><span>Photos</span></div>
+      <div><h3>Photo<em>gallery</em></h3><p>Find your event, pick your frames and buy the full-resolution photos.</p>
+        <div class="go"><span>Find your shot</span><span>→</span></div></div>
+    </a>
+    <a class="door rv" href="clients.html" style="transition-delay:.16s">
+      <video muted loop playsinline preload="none" data-src="media/reels/r10-loop.mp4"></video>
+      <div class="top mono"><span><b>03</b> Clients</span><span>Gyms · Academies</span></div>
+      <div><h3>For gyms<em>&amp; academies</em></h3><p>Team days, kids programmes, athlete spotlights and event promos.</p>
+        <div class="go"><span>See the work</span><span>→</span></div></div>
+    </a>
+    <a class="door rv" href="contact.html" style="transition-delay:.24s">
+      <video muted loop playsinline preload="none" data-src="media/reels/r01-loop.mp4"></video>
+      <div class="top mono"><span><b>04</b> Book</span><span>Contact</span></div>
+      <div><h3>Book<em>a shoot</em></h3><p>Competitions, events and gyms. Tell us the date and the mats.</p>
+        <div class="go"><span>Book now</span><span>→</span></div></div>
+    </a>
   </div>
 </section>
 
 <!-- 4. MANIFESTO -->
 <section id="manifesto">
-  <div class="kicker mono"><b>(02)</b> How we shoot</div>
+  <div class="kicker mono"><b>(03)</b> How we shoot</div>
   <p class="mani" id="mani">We don't film matches. We film the scramble [r01] the grip fight, the half-second [r13] before the tap, the scream on the podium [r09] and we cut it fast enough that you post it *the* *same* *night.*</p>
   <div class="sig mono"><img src="logo.png" alt="BJJ Shots logo"><span>BJJ Shots<br>Mat-side since 2026</span></div>
 </section>
 
-<!-- 5. CONTACT SHEET -->
-<section id="selects">
-  <div class="kicker mono"><b>(03)</b> Stills</div>
-  <div class="sel-head">
-    <h2>The contact<br><em>sheet</em></h2>
-    <p>Frames pulled straight from the coverage. Move the loupe over any frame to look closer; the circled ones are the editor's picks.</p>
-  </div>
-  <div class="sheet" id="sheet"></div>
-</section>
-
-<!-- 6. SERVICES -->
+<!-- 5. SERVICES -->
 <section id="services">
   <div class="kicker mono"><b>(04)</b> Three rounds</div>
   <div class="rounds">
     <div class="round rv" data-peek="r03">
       <div class="rd mono">Round<b>01</b></div>
       <h3>Competition<br>coverage</h3>
-      <p>Every key moment of your competition, from individual matches to standout performances, delivered as high-quality highlights for athletes to share and remember. Fast turnaround, clean edits.</p>
+      <p>Every key moment of your competition, from individual matches to standout performances, delivered as high-quality highlights and a <a href="gallery.html">photo gallery</a> athletes can buy from.</p>
       <div class="tm">05:00</div>
     </div>
     <div class="round rv" data-peek="r14">
@@ -532,54 +391,34 @@ footer .soc a:hover{color:var(--red)}
     <div class="round rv" data-peek="r10">
       <div class="rd mono">Round<b>03</b></div>
       <h3>Gym content<br>packages</h3>
-      <p>Consistent, high-quality content that shows off your classes, athletes and community. Training footage and promo videos built to attract new members and keep your gym visible online.</p>
+      <p>Consistent, high-quality content that shows off your classes, athletes and community, built to attract new members. <a href="clients.html">See the gym work</a>.</p>
       <div class="tm">10:00</div>
     </div>
   </div>
 </section>
 
-<!-- 7. FILMED AT -->
-<section id="events">
+<!-- 6. FILMED AT -->
+<section id="events" aria-label="Events we have filmed at">
   <div class="kicker mono"><b>(05)</b> Filmed at</div>
-  <div class="band" id="band1"></div>
-  <div class="band out" id="band2"></div>
+  <div class="band" id="band1" aria-hidden="true"></div>
+  <div class="band out" id="band2" aria-hidden="true"></div>
+  <p class="sr">Abu Dhabi World Pro, AJP Tour, UAE Jiu-Jitsu Federation, KBMBZ Championship</p>
 </section>
 
-<!-- 8. CONTACT -->
-<section id="contact">
+<!-- 7. BOOK -->
+<section id="book">
   <div class="kicker mono"><b>(06)</b> Book the mat-side spot</div>
-  <div class="knock">
+  <a class="knock" href="contact.html" aria-label="Book a shoot">
     <video muted loop playsinline preload="none" data-src="media/reels/r01-loop.mp4"></video>
-    <h2>Let's roll</h2>
-  </div>
-  <div class="contact-grid">
-    <div class="direct">
-      <h3>Tell us the event, the date and the mats. We'll bring the cameras.</h3>
-      <a class="line" href="mailto:info@bjjshots.net">info@bjjshots.net <small>Email ↗</small></a>
-      <a class="line" href="https://wa.me/971585477521" target="_blank" rel="noopener">+971 58 547 7521 <small>WhatsApp ↗</small></a>
-      <a class="line" href="https://www.instagram.com/bjj__shots/" target="_blank" rel="noopener">@bjj__shots <small>Instagram ↗</small></a>
-    </div>
-    <form class="brief" id="brief">
-      <label class="f"><span class="mono">Name</span><input name="name" required autocomplete="name"></label>
-      <label class="f"><span class="mono">Email</span><input name="email" type="email" required autocomplete="email"></label>
-      <div class="full"><span class="mono">What are we shooting?</span>
-        <div class="chips">
-          <label><input type="radio" name="type" value="Competition coverage" checked><span>Competition coverage</span></label>
-          <label><input type="radio" name="type" value="Event coverage"><span>Event coverage</span></label>
-          <label><input type="radio" name="type" value="Gym content package"><span>Gym content package</span></label>
-          <label><input type="radio" name="type" value="Something else"><span>Something else</span></label>
-        </div>
-      </div>
-      <label class="f"><span class="mono">Event or gym</span><input name="event"></label>
-      <label class="f"><span class="mono">Date</span><input name="date" placeholder="e.g. 14 March"></label>
-      <label class="f full"><span class="mono">Message</span><textarea name="msg"></textarea></label>
-      <button class="send" type="submit">Send the brief <span>→</span></button>
-      <p class="formnote">Opens your email app with the brief filled in, addressed to info@bjjshots.net.</p>
-    </form>
+    <h2 aria-hidden="true">Let's roll</h2>
+  </a>
+  <div class="book-row">
+    <p>Tell us the event, the date and the mats. We'll bring the cameras.</p>
+    <a class="btn" href="contact.html">Book a shoot <span>→</span></a>
   </div>
 </section>
 
-<!-- 9. OUTRO: logo reveal -->
+<!-- 8. OUTRO: logo reveal -->
 <section id="outro" aria-label="BJJ Shots">
   <div class="stage">
     <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="98"/><circle class="ticks" cx="100" cy="100" r="93"/></svg>
@@ -591,44 +430,13 @@ footer .soc a:hover{color:var(--red)}
     <div class="cnt mono" aria-hidden="true" id="oN">Frame 2399 / 2400</div>
   </div>
 </section>
-
-<footer>
-  <img src="logo.png" alt="BJJ Shots, est. 2026">
-  <div class="soc">
-    <a href="https://www.instagram.com/bjj__shots/" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://www.tiktok.com/@bjjshots" target="_blank" rel="noopener">TikTok</a>
-    <a href="https://www.youtube.com/@BJJShotss" target="_blank" rel="noopener">YouTube</a>
-  </div>
-  <span class="mono">© 2026 BJJ Shots · <a href="privacy.html" style="color:inherit">Privacy</a></span>
-</footer>
 </main>
 
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Highlight player">
-  <button class="x" id="lbx"><span>Close</span><b>×</b></button>
-  <div class="box"><video id="lbv" controls playsinline preload="none"></video></div>
-  <div class="t" id="lbt"></div>
-</div>
-<div class="cursor idle" aria-hidden="true"><span>Play</span></div>
-
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
 <script>
 (() => {
-const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const fine = matchMedia('(pointer: fine)').matches;
-const mobile = () => innerWidth <= 760;
-const pad = (n, l = 2) => String(n).padStart(l, '0');
-
-/* the reels, all from bjjshots.net: [id, title, tag] */
-const REELS = [
-  ['r01', 'Main stage', 'No-Gi'], ['r02', 'Under the lights', 'No-Gi'], ['r03', 'AJP Tour', 'Gi · UAE'],
-  ['r04', 'The walk-out', 'No-Gi'], ['r05', 'Wallace', 'Gi'], ['r06', 'Big screen', 'Gi'],
-  ['r07', 'Isa', 'Gi · Juniors'], ['r08', 'The next ones', 'Gi · Juniors'], ['r09', 'Denis', 'Gi'],
-  ['r10', 'Arms wide', 'Gi'], ['r11', 'Aylla', 'Gi'], ['r12', 'Little lions', 'Gi · Kids'],
-  ['r13', 'Red belt, blue gi', 'Gi'], ['r14', 'Federation mats', 'Gi'],
-];
-const R = Object.fromEntries(REELS.map(r => [r[0], r]));
+const { $, $$, clamp, ease, pad, reduce, fine, mobile, watch, json, esc } = BJJ;
 
 /* ---- loader: aperture blades + counter, then the iris opens ---- */
 const blades = $('#blades');
@@ -665,28 +473,13 @@ const setHeroSrc = () => {
 };
 setHeroSrc();
 vWide.addEventListener('playing', () => poster.style.opacity = 0);
+addEventListener('resize', setHeroSrc);
 
-/* ---- film strip ---- */
-const track = $('#track');
-track.innerHTML = REELS.map((r, i) => `
-  <button class="frame" data-reel="${r[0]}" aria-label="Play the ${r[1]} highlight">
-    <span class="edge"><span>BJJSHOTS 2026</span><span>▸ ${pad(i + 1)}A</span></span>
-    <span class="shot">
-      <img src="media/reels/${r[0]}.jpg" alt="" loading="lazy">
-      <video muted loop playsinline preload="none" data-src="media/reels/${r[0]}-loop.mp4"></video>
-      <span class="no">${pad(i + 1)}</span>
-      <span class="cap"><b>${r[1]}</b><span class="mono">${r[2]}</span></span>
-    </span>
-  </button>`).join('') + `
-  <a class="frame endcard" href="#contact"><span class="edge"><span>BJJSHOTS 2026</span><span>▸ 15A</span></span>
-    <span class="shot"><span class="mono" style="color:#fff">Frame 15</span><b>Your match<br>goes here.</b><span class="mono" style="color:#fff">Book coverage →</span></span></a>`;
-
-/* loops load and play only while on screen */
-const io = new IntersectionObserver(es => es.forEach(e => {
-  const v = e.target;
-  if (e.isIntersecting) { if (!v.getAttribute('src') && v.dataset.src) v.src = v.dataset.src; v.play().catch(() => {}); }
-  else if (!v.paused) v.pause();
-}), { rootMargin: '100px 300px' });
+/* ---- "latest cuts": the four newest highlights (same data as the Highlights page) ---- */
+json('data/highlights.json').then(d => {
+  $('#cuts').insertAdjacentHTML('beforeend', d.items.slice(0, 4).map(r =>
+    `<button data-video="${esc(r.video)}" data-poster="${esc(r.poster)}" data-title="${esc(r.title)}" data-tag="${esc(r.tag)}"${r.permalink ? ` data-link="${esc(r.permalink)}"` : ''} aria-label="Play the ${esc(r.title)} highlight"><img src="${esc(r.poster)}" alt=""></button>`).join(''));
+}).catch(() => {});
 
 /* ---- manifesto: words + inline clip pills ---- */
 const mani = $('#mani');
@@ -697,86 +490,23 @@ mani.innerHTML = mani.textContent.trim().split(/\s+/).map(t => {
   return `<span class="w">${t}</span>`;
 }).join(' ');
 const maniParts = $$('.w, .pill', mani);
-$$('video[data-src]').forEach(v => io.observe(v));
-
-/* ---- contact sheet: stills + grease-pencil picks ---- */
-const STILLS = ['s01', 's12', 's03', 's05', 's13', 's09', 's10', 's07', 's04', 's11', 's08', 's02', 's06', 's14'];
-const MARKS = { s01: ['c', 'Print this'], s03: ['c', 'Hero shot'], s10: ['c', 'Cover?'], s04: ['t', ''], s02: ['c', 'Yes!!'], s11: ['t', ''] };
-const CIRCLE = 'M52 4 C80 3 97 24 96 50 C95 80 74 97 47 96 C20 95 3 75 4 49 C5 22 27 4 55 7 C64 8 72 12 77 16';
-const TICK = 'M20 60 L42 82 L88 22';
-const sheet = $('#sheet');
-sheet.innerHTML = STILLS.map((s, i) => {
-  const m = MARKS[s];
-  const mk = m ? `<svg class="mk" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="${m[0] === 'c' ? CIRCLE : TICK}" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1"/></svg>` : '';
-  const note = m && m[1] ? `<span class="note" style="${(i % 7) > 3 ? 'right:-4px' : 'left:4px'}">${m[1]}</span>` : '';
-  return `<div class="cell"><div class="num"><span>${pad(i + 12)}</span><span>▸${pad(i + 12)}A</span></div>
-    <div class="ph" data-src="media/stills/${s}.jpg"><img src="media/stills/${s}.jpg" alt="BJJ Shots competition still ${i + 1}" loading="lazy"></div>${mk}${note}</div>`;
-}).join('');
-new IntersectionObserver((es, o) => es.forEach(e => {
-  if (!e.isIntersecting) return;
-  sheet.classList.add('drawn');
-  $$('svg.mk path', sheet).forEach((p, i) => { p.style.transition = `stroke-dashoffset .9s cubic-bezier(.6,0,.2,1) ${.25 + i * .22}s`; p.style.strokeDashoffset = 0; });
-  o.disconnect();
-}), { threshold: .3 }).observe(sheet);
+watch();
 
 /* ---- filmed-at bands ---- */
 const EV = ['Abu Dhabi World Pro', 'AJP Tour', 'UAE Jiu-Jitsu Federation', 'KBMBZ Championship'];
-const bandHTML = () => Array.from({ length: 3 }, () => EV.map(e => `<span>${e}<i>✦</i></span>`).join('')).join('');
 const band1 = $('#band1'), band2 = $('#band2');
-band1.innerHTML = band2.innerHTML = bandHTML();
+band1.innerHTML = band2.innerHTML = Array.from({ length: 3 }, () => EV.map(e => `<span>${e}<i>✦</i></span>`).join('')).join('');
 
-/* ---- cursor, loupe, hover peek ---- */
-const cur = $('.cursor'), loupe = $('.loupe'), peek = $('.peek'), peekV = $('video', peek);
-let mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my, px = mx, py = my;
-addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; cur.classList.remove('idle'); }, { passive: true });
-document.addEventListener('pointerleave', () => cur.classList.add('idle'));
-if (fine) {
-  document.addEventListener('pointerover', e => {
-    cur.classList.toggle('play', !!e.target.closest('.frame:not(.endcard), .cuts button'));
-    cur.classList.toggle('hide', !!e.target.closest('.ph, .round'));
-  });
-  $$('.ph').forEach(ph => {
-    ph.addEventListener('pointerenter', () => { loupe.style.backgroundImage = `url(${ph.dataset.src})`; loupe.classList.add('on'); });
-    ph.addEventListener('pointerleave', () => loupe.classList.remove('on'));
-    ph.addEventListener('pointermove', e => {
-      const r = ph.getBoundingClientRect(), z = 3.2;
-      const fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
-      loupe.style.backgroundSize = `${r.width * z}px ${r.height * z}px`;
-      loupe.style.backgroundPosition = `${105 - fx * r.width * z}px ${105 - fy * r.height * z}px`;
-    });
-  });
-  $$('.round').forEach(rd => {
-    rd.addEventListener('pointerenter', () => { const s = `media/reels/${rd.dataset.peek}-loop.mp4`; if (!peekV.src.endsWith(s)) peekV.src = s; peekV.play().catch(() => {}); peek.classList.add('on'); });
-    rd.addEventListener('pointerleave', () => { peek.classList.remove('on'); peekV.pause(); });
-  });
-} else cur.style.display = 'none';
-
-/* ---- lightbox player ---- */
-const lb = $('#lb'), lbv = $('#lbv'), lbt = $('#lbt');
-const openReel = id => {
-  const r = R[id]; if (!r) return;
-  lbv.src = `media/reels/${id}.mp4`; lbv.poster = `media/reels/${id}.jpg`;
-  lbt.innerHTML = `<small class="mono">${r[2]} · Cut ${id.slice(1)}</small>${r[1]}`;
-  lb.classList.add('on'); lbv.muted = false; lbv.play().catch(() => {});
-  $('#lbx').focus({ preventScroll: true });
-};
-const closeReel = () => { lb.classList.remove('on'); lbv.pause(); };
-document.addEventListener('click', e => { const t = e.target.closest('[data-reel]'); if (t) { e.preventDefault(); openReel(t.dataset.reel); } });
-$('#lbx').addEventListener('click', closeReel);
-lb.addEventListener('click', e => { if (e.target === lb) closeReel(); });
-addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('on')) closeReel(); });
-
-/* ---- brief → the visitor's email app ---- */
-$('#brief').addEventListener('submit', e => {
-  e.preventDefault();
-  const f = new FormData(e.target);
-  const body = `Name: ${f.get('name')}\nEmail: ${f.get('email')}\nService: ${f.get('type')}\nEvent or gym: ${f.get('event') || '-'}\nDate: ${f.get('date') || '-'}\n\n${f.get('msg') || ''}`;
-  location.href = `mailto:info@bjjshots.net?subject=${encodeURIComponent(`${f.get('type')}: ${f.get('event') || f.get('name')}`)}&body=${encodeURIComponent(body)}`;
+/* ---- services: video peek follows the pointer ---- */
+const peek = $('.peek'), peekV = $('video', peek);
+let px = innerWidth / 2, py = innerHeight / 2;
+if (fine) $$('.round').forEach(rd => {
+  rd.dataset.cursor = 'hide';
+  rd.addEventListener('pointerenter', () => { const s = `media/reels/${rd.dataset.peek}-loop.mp4`; if (!peekV.src.endsWith(s)) peekV.src = s; peekV.play().catch(() => {}); peek.classList.add('on'); });
+  rd.addEventListener('pointerleave', () => { peek.classList.remove('on'); peekV.pause(); });
 });
 
-/* ---- reveals, scoreboard count-up, match clock ---- */
-const rvio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rvio.unobserve(e.target); } }), { threshold: .2 });
-$$('.rv').forEach(el => rvio.observe(el));
+/* ---- scoreboard count-up, match clock ---- */
 let clockT0 = 0;
 new IntersectionObserver((es, o) => es.forEach(e => {
   if (!e.isIntersecting) return;
@@ -790,9 +520,7 @@ new IntersectionObserver((es, o) => es.forEach(e => {
 
 /* ---- one scroll engine for everything that scrubs ---- */
 const hero = $('#hero'), media = $('#heroMedia'), hud = $('#hud'), copy = $('#heroCopy'), foot = $('#heroFoot'), cuts = $('#cuts');
-const shL = $('#shL'), shR = $('#shR'), shN = $('#shN'), ratio = $('#ratio'), tc = $('#tc');
-const work = $('#work'), wBar = $('#wBar'), wNow = $('#wNow');
-const meter = $('#meter'), frameEl = $('#frame'), clock = $('#clock');
+const shL = $('#shL'), shR = $('#shR'), shN = $('#shN'), ratio = $('#ratio'), tc = $('#tc'), clock = $('#clock');
 let lastY = scrollY, vel = 0, bandX = 0, tallOn = false;
 const outro = $('#outro'), oLens = $('#outro .lens'), oImg = $('#outro .lens img'), oRing = $('#outro .ring'), oAf = $('#outro .af'),
   oF = $('#oF'), oD = $('#oD'), oS = $('#oS'), oN = $('#oN');
@@ -831,15 +559,9 @@ function tick(now) {
   const ct = (tallOn && vTall.style.opacity > .5 ? vTall.currentTime : vWide.currentTime) || 0;
   tc.textContent = `00:00:${pad(Math.floor(ct))}:${pad(Math.floor((ct % 1) * 30))}`;
 
-  // film strip: vertical scroll rolls the tape sideways
-  const wp = prog(work), span = Math.max(0, track.scrollWidth - vw);
-  track.style.transform = `translate3d(${-wp * span}px,0,0)`;
-  wBar.style.transform = `scaleX(${wp})`;
-  wNow.textContent = pad(Math.min(14, 1 + Math.floor(wp * 14)));
-
   // manifesto: words light up as the paragraph passes the middle of the screen
   const mr = mani.getBoundingClientRect(), mp = clamp((vh * .8 - mr.top) / (mr.height + vh * .2));
-  const lit = Math.floor(mp * maniParts.length * 1.04);
+  const lit = reduce ? maniParts.length : Math.floor(mp * maniParts.length * 1.04);
   maniParts.forEach((el, i) => el.classList.toggle('on', i < lit));
 
   // bands drift, faster and leaning while you scroll
@@ -852,45 +574,35 @@ function tick(now) {
   }
 
   // outro: the iris opens on the logo, focus pulls it sharp, then the shutter fires once
-  if (outro) {
-    const op = reduce ? 1 : prog(outro), io = ease(clamp(op / .38)), fo = ease(clamp((op - .3) / .42));
-    if (!reduce) {
-      oLens.style.clipPath = `circle(${io * 72}% at 50% 50%)`;
-      oImg.style.filter = `blur(${(1 - fo) * 22}px) brightness(${.55 + fo * .45})`;
-      oImg.style.transform = `scale(${1.28 - fo * .28}) rotate(${(1 - fo) * -6}deg)`;
-      oRing.style.opacity = io; oRing.style.transform = `rotate(${op * 140}deg)`;
-      const a = clamp((op - .22) / .5), sc = 1.5 - ease(a) * .5;
-      oAf.style.opacity = clamp((op - .2) / .1); oAf.style.transform = `scale(${sc})`;
-    }
-    const fs = [22, 16, 11, 8, 5.6, 4, 2.8, 2, 1.4];
-    oF.textContent = 'f/' + fs[Math.min(fs.length - 1, Math.floor(clamp(op / .74) * fs.length))];
-    oD.textContent = fo > .98 ? '∞' : (0.3 + fo * 9.7).toFixed(1) + ' m';
-    const locked = op > .74;
-    outro.classList.toggle('locked', locked);
-    oS.textContent = op > .8 ? 'Shot' : locked ? 'AF lock' : 'Hunting';
-    oN.textContent = op > .8 ? 'Frame 2400 / 2400' : 'Frame 2399 / 2400';
-    if (op > .8 && !outro.classList.contains('shot')) outro.classList.add('shot');
-    else if (op < .6 && outro.classList.contains('shot')) outro.classList.remove('shot');
+  const op = reduce ? 1 : prog(outro), io = ease(clamp(op / .38)), fo = ease(clamp((op - .3) / .42));
+  if (!reduce) {
+    oLens.style.clipPath = `circle(${io * 72}% at 50% 50%)`;
+    oImg.style.filter = `blur(${(1 - fo) * 22}px) brightness(${.55 + fo * .45})`;
+    oImg.style.transform = `scale(${1.28 - fo * .28}) rotate(${(1 - fo) * -6}deg)`;
+    oRing.style.opacity = io; oRing.style.transform = `rotate(${op * 140}deg)`;
+    const a = clamp((op - .22) / .5), sc = 1.5 - ease(a) * .5;
+    oAf.style.opacity = clamp((op - .2) / .1); oAf.style.transform = `scale(${sc})`;
   }
-
-  // rail: page progress as a frame counter
-  const tot = document.documentElement.scrollHeight - vh, pg = tot > 0 ? y / tot : 0;
-  meter.style.transform = `scaleY(${pg})`;
-  frameEl.textContent = 'FR ' + pad(1 + Math.round(pg * 2399), 4);
+  const fs = [22, 16, 11, 8, 5.6, 4, 2.8, 2, 1.4];
+  oF.textContent = 'f/' + fs[Math.min(fs.length - 1, Math.floor(clamp(op / .74) * fs.length))];
+  oD.textContent = fo > .98 ? '∞' : (0.3 + fo * 9.7).toFixed(1) + ' m';
+  const locked = op > .74;
+  outro.classList.toggle('locked', locked);
+  oS.textContent = op > .8 ? 'Shot' : locked ? 'AF lock' : 'Hunting';
+  oN.textContent = op > .8 ? 'Frame 2400 / 2400' : 'Frame 2399 / 2400';
+  if (op > .8 && !outro.classList.contains('shot')) outro.classList.add('shot');
+  else if (op < .6 && outro.classList.contains('shot')) outro.classList.remove('shot');
 
   // match clock counts down once the board is seen
   if (clockT0) { const left = Math.max(0, 300 - (now - clockT0) / 1000); clock.textContent = `${pad(Math.floor(left / 60))}:${pad(Math.floor(left % 60))}`; }
 
-  // cursor + peek trail the pointer
-  cx += (mx - cx) * .25; cy += (my - cy) * .25; px += (mx - px) * .12; py += (my - py) * .12;
-  cur.style.translate = `${cx}px ${cy}px`;
-  loupe.style.translate = `${mx}px ${my}px`;
+  // peek trails the pointer
+  const mo = BJJ.mouse; px += (mo.x - px) * .12; py += (mo.y - py) * .12;
   peek.style.translate = `${px}px ${py}px`;
 
   requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);
-addEventListener('resize', setHeroSrc);
 })();
 </script>
 </body>

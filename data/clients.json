@@ -1,0 +1,77 @@
+{
+ "note": "Portfolio for gyms and martial arts clients. Put the gym's name in client and a logo file path in logo (e.g. media/clients/academy.png) when you have permission to show them.",
+ "projects": [
+  {
+   "slug": "team",
+   "title": "Competition team coverage",
+   "client": null,
+   "logo": null,
+   "kind": "Academy · competition day",
+   "reels": [
+    "r03",
+    "r13",
+    "r10"
+   ],
+   "summary": "We follow an academy's team through a full tournament day: warm-ups, every match, the podium. The gym gets a highlight per athlete and one team film to post that night.",
+   "deliverables": [
+    "1 team film (60–90 s)",
+    "A highlight for every athlete",
+    "Vertical cuts for Reels and TikTok"
+   ]
+  },
+  {
+   "slug": "kids",
+   "title": "Kids & juniors programme",
+   "client": null,
+   "logo": null,
+   "kind": "Academy · youth classes",
+   "reels": [
+    "r12",
+    "r08",
+    "r07"
+   ],
+   "summary": "Content that sells the kids programme to parents: the classes, the coaches, the first competitions and the medals.",
+   "deliverables": [
+    "Monthly class footage",
+    "Competition highlights",
+    "Parent-friendly promo cut"
+   ]
+  },
+  {
+   "slug": "spotlight",
+   "title": "Athlete spotlights",
+   "client": null,
+   "logo": null,
+   "kind": "Academy · fighter content",
+   "reels": [
+    "r05",
+    "r09",
+    "r11"
+   ],
+   "summary": "Short films on the academy's competitors, cut from their matches, built to grow the athlete and the gym together.",
+   "deliverables": [
+    "1 spotlight per athlete",
+    "Match-by-match clips",
+    "Cover photos"
+   ]
+  },
+  {
+   "slug": "event",
+   "title": "Event & seminar promo",
+   "client": null,
+   "logo": null,
+   "kind": "Organisers · gyms",
+   "reels": [
+    "r01",
+    "r02",
+    "r14"
+   ],
+   "summary": "Big-stage energy for open mats, seminars and in-house tournaments: the teaser before, the recap after.",
+   "deliverables": [
+    "Teaser for the announcement",
+    "Same-week recap film",
+    "Photo set"
+   ]
+  }
+ ]
+}

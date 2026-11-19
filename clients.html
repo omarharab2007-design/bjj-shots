@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Gyms & Academies | BJJ Shots</title>
+<meta name="description" content="BJJ Shots films Jiu-Jitsu and martial arts gyms across the UAE: competition team coverage, kids programmes, athlete spotlights and event promos.">
+<meta property="og:image" content="media/reels/r10.jpg">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.ph-head .btns{display:flex;gap:12px;flex-wrap:wrap}
+
+/* what you get */
+#offer{padding:10vh var(--gut) 8vh}
+.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pack{border:1px solid var(--line);border-radius:14px;padding:28px 24px 26px;display:flex;flex-direction:column;gap:14px;background:var(--ink2);transition:border-color .3s,transform .5s var(--ease)}
+.pack:hover{border-color:var(--red);transform:translateY(-6px)}
+.pack .mono{color:var(--mute)}
+.pack .mono b{color:var(--red);font-weight:500}
+.pack h3{font-family:var(--display);font-weight:400;font-size:clamp(32px,3vw,48px);line-height:.9;text-transform:uppercase}
+.pack p{color:var(--soft);font-size:15px}
+.pack ul{list-style:none;margin-top:auto;border-top:1px solid var(--line);padding-top:14px;display:grid;gap:8px}
+.pack li{display:flex;gap:10px;font-size:14px}
+.pack li::before{content:"✦";color:var(--edge);font-size:11px;line-height:1.7}
+
+/* portfolio */
+#work{padding:12vh var(--gut) 6vh}
+.work-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:8vh}
+.work-head p{max-width:320px;color:var(--soft);font-size:15px}
+.proj{display:grid;grid-template-columns:1fr 1.15fr;gap:6vw;align-items:center;padding:8vh 0;border-top:1px solid var(--line)}
+.proj:nth-child(even) .reels{order:-1}
+.proj .no{font-family:var(--display);font-size:20px;color:var(--red)}
+.proj .kind{color:var(--mute);margin:10px 0 16px;display:block}
+.proj h3{font-family:var(--display);font-weight:400;font-size:clamp(44px,5.4vw,96px);line-height:.86;text-transform:uppercase}
+.proj .client{font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.2vw,34px);color:var(--red);margin-top:10px}
+.proj .logo{height:46px;width:auto;margin-top:16px;filter:grayscale(1) brightness(1.6)}
+.proj p{color:var(--soft);font-size:16px;margin-top:22px;max-width:480px}
+.proj ul{list-style:none;margin-top:24px;display:flex;flex-wrap:wrap;gap:8px}
+.proj li{border:1px solid #3A3A40;border-radius:999px;padding:8px 14px;font-size:13px}
+.reels{position:relative;height:min(64vh,620px);display:flex;justify-content:center;align-items:center}
+.reels .fcard{position:absolute;width:min(34%,250px);transition:transform .9s var(--ease)}
+.reels .fcard:nth-child(1){transform:translateX(-62%) rotate(-7deg) translateY(18px)}
+.reels .fcard:nth-child(2){z-index:2;transform:translateY(-12px)}
+.reels .fcard:nth-child(3){transform:translateX(62%) rotate(7deg) translateY(18px)}
+.proj:not(.in) .reels .fcard{transform:none}
+.reels .fcard:hover{z-index:3}
+.reels .fcard .shot{box-shadow:0 30px 60px rgba(0,0,0,.5)}
+
+/* process */
+#process{padding:12vh var(--gut)}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);position:relative}
+.flow::before{content:"";position:absolute;left:0;top:-1px;height:3px;width:100%;background:var(--red);transform-origin:left;transform:scaleX(0);transition:transform 1.6s var(--ease)}
+.flow.in::before{transform:scaleX(1)}
+.flow div{padding:26px 22px 0 0}
+.flow b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--edge);margin-bottom:16px}
+.flow h3{font-family:var(--display);font-weight:400;font-size:clamp(28px,2.6vw,40px);line-height:.92;text-transform:uppercase}
+.flow p{color:var(--soft);font-size:14px;margin-top:12px;max-width:260px}
+
+/* faq */
+#faq{padding:6vh var(--gut) 4vh}
+.qa{border-top:1px solid var(--line)}
+.qa details{border-bottom:1px solid var(--line)}
+.qa summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;cursor:pointer;font-family:var(--display);font-size:clamp(22px,2.2vw,34px);text-transform:uppercase;line-height:1}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";font-family:var(--body);font-size:28px;transition:transform .3s}
+.qa details[open] summary::after{transform:rotate(45deg);color:var(--red)}
+.qa details p{color:var(--soft);max-width:680px;padding:0 0 24px}
+
+@media (max-width:1100px){.packs{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr 1fr;gap:30px 0}}
+@media (max-width:760px){
+  #offer{padding:6vh var(--gut)}
+  .packs{grid-template-columns:1fr}
+  #work{padding:10vh var(--gut) 4vh}
+  .work-head{flex-direction:column;align-items:start;gap:14px}
+  .proj{grid-template-columns:1fr;gap:5vh;padding:6vh 0}
+  .proj:nth-child(even) .reels{order:0}
+  .reels{height:auto;justify-content:flex-start;overflow-x:auto;gap:10px;scroll-snap-type:x mandatory;padding-bottom:6px}
+  .reels .fcard,.reels .fcard:nth-child(n){position:relative;transform:none!important;width:46vw;flex:none;scroll-snap-align:start}
+  #process{padding:8vh var(--gut)}
+  .flow{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.flow::before{transform:scaleX(1);transition:none}.reels .fcard{transition:none}}
+</style>
+</head>
+<body data-page="clients">
+<main>
+
+<header class="ph-head">
+  <div class="slate mono"><span class="rec"><i></i>Clients</span><span>Jiu-Jitsu · Martial arts · Academies</span><span>Across the UAE</span></div>
+  <h1 class="ph-title"><span class="l">Your academy,</span><br><span class="l"><em>filmed like a</em></span><br><span class="l">main event</span></h1>
+  <div class="ph-sub">
+    <p>We make content for Jiu-Jitsu and martial arts gyms: the classes, the team, the competition days and the medals, cut for Instagram and TikTok and built to bring in new members.</p>
+    <div class="btns"><a class="btn" href="contact.html?type=gym">Get the rate card →</a></div>
+  </div>
+</header>
+
+<section id="offer" aria-labelledby="offerH">
+  <div class="kicker mono"><b>(01)</b> <span id="offerH">What your gym gets</span></div>
+  <div class="packs">
+    <div class="pack rv"><span class="mono"><b>01</b> Monthly</span><h3>Content<br>package</h3><p>A steady stream of training footage and promo videos that shows off your classes, athletes and community.</p>
+      <ul><li>Class and drilling footage</li><li>Reels cut for every platform</li><li>Kept consistent month to month</li></ul></div>
+    <div class="pack rv" style="transition-delay:.08s"><span class="mono"><b>02</b> Competition day</span><h3>Team<br>coverage</h3><p>We follow your team through the tournament and deliver highlights your athletes can share and remember.</p>
+      <ul><li>Match highlights per athlete</li><li>A team film for the gym</li><li>Photo gallery from the day</li></ul></div>
+    <div class="pack rv" style="transition-delay:.16s"><span class="mono"><b>03</b> One-off</span><h3>Promo &amp;<br>events</h3><p>Open mats, seminars, grand openings and in-house tournaments: the teaser before and the recap after.</p>
+      <ul><li>Announcement teaser</li><li>Recap film</li><li>Interviews on request</li></ul></div>
+  </div>
+</section>
+
+<section id="work" aria-labelledby="workH">
+  <div class="kicker mono"><b>(02)</b> The portfolio</div>
+  <div class="work-head">
+    <h2 class="h-big" id="workH">The work<br><em>for gyms</em></h2>
+    <p>The kind of content we make for academies. Tap any frame to watch it with sound.</p>
+  </div>
+  <div id="projects"></div>
+</section>
+
+<section id="process" aria-labelledby="procH">
+  <div class="kicker mono"><b>(03)</b> <span id="procH">How it works</span></div>
+  <div class="flow rv">
+    <div><b>Step 01</b><h3>The brief</h3><p>Tell us about your gym, your classes and what you want more of: members, kids, visibility.</p></div>
+    <div><b>Step 02</b><h3>The shoot</h3><p>We come to your mats, or follow your team to the competition.</p></div>
+    <div><b>Step 03</b><h3>The cut</h3><p>Fast, clean edits framed for the phone and cut on the beat.</p></div>
+    <div><b>Step 04</b><h3>The post</h3><p>You get files ready to post, while the moment is still fresh.</p></div>
+  </div>
+</section>
+
+<section id="faq" aria-labelledby="faqH">
+  <div class="kicker mono"><b>(04)</b> <span id="faqH">Questions</span></div>
+  <div class="qa">
+    <details><summary>Do you only film Jiu-Jitsu?</summary><p>Jiu-Jitsu is home, but we film martial arts gyms of every kind: grappling, striking and kids' programmes.</p></details>
+    <details><summary>Where do you work?</summary><p>We are based in the UAE and cover gyms and events across the Gulf.</p></details>
+    <details><summary>Can you film our competition team?</summary><p>Yes. We follow your athletes through the day and deliver highlights for each of them, plus a photo gallery your members can buy from.</p></details>
+    <details><summary>How do we get prices?</summary><p>Send us a quick brief on the booking page and we will send the rate card for the package that fits your gym.</p></details>
+  </div>
+</section>
+
+<section class="endband">
+  <a class="big" href="contact.html?type=gym"><span>Put your gym<br>on the feed</span><span>↗</span></a>
+</section>
+</main>
+
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(async () => {
+const { $, esc, pad, json, watch, reveal } = BJJ;
+let data;
+try { data = await json('data/clients.json'); } catch { return; }
+let reels = {};
+try { (await json('data/highlights.json')).items.forEach(r => reels[r.id] = r); } catch {}
+const reel = id => reels[id] || { id, title: '', tag: '', video: `media/reels/${id}.mp4`, loop: `media/reels/${id}-loop.mp4`, poster: `media/reels/${id}.jpg` };
+$('#projects').innerHTML = data.projects.map((p, i) => `
+  <article class="proj rv">
+    <div>
+      <span class="no">${pad(i + 1)}</span>
+      <span class="kind mono">${esc(p.kind)}</span>
+      <h3>${esc(p.title)}</h3>
+      ${p.client ? `<div class="client">${esc(p.client)}</div>` : ''}
+      ${p.logo ? `<img class="logo" src="${esc(p.logo)}" alt="${esc(p.client || '')} logo">` : ''}
+      <p>${esc(p.summary)}</p>
+      <ul>${p.deliverables.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
+    </div>
+    <div class="reels">${p.reels.map(reel).map(r => `
+      <button class="fcard" data-video="${esc(r.video)}" data-poster="${esc(r.poster)}" data-title="${esc(r.title || p.title)}" data-tag="${esc(p.kind)}" aria-label="Play ${esc(r.title || p.title)}">
+        <span class="shot"><img src="${esc(r.poster)}" alt="" loading="lazy"><video muted loop playsinline preload="none" data-src="${esc(r.loop)}"></video>
+        <span class="cap"><b>${esc(r.title)}</b><span class="mono">${esc(r.tag)}</span></span></span>
+      </button>`).join('')}</div>
+  </article>`).join('');
+watch($('#projects'));
+reveal($('#projects'));
+})();
+</script>
+</body>
+</html>

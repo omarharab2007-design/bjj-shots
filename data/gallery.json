@@ -1,0 +1,195 @@
+{
+ "events": [
+  {
+   "slug": "sample-nogi",
+   "name": "Sample: No-Gi under the lights",
+   "date": "2026-04-20",
+   "place": "UAE",
+   "sample": true,
+   "cover": "media/gallery/sample-nogi/sample-nogi-001-t.jpg",
+   "count": 12,
+   "photos": [
+    {
+     "id": "sample-nogi-001",
+     "src": "media/gallery/sample-nogi/sample-nogi-001.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-001-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-002",
+     "src": "media/gallery/sample-nogi/sample-nogi-002.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-002-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-003",
+     "src": "media/gallery/sample-nogi/sample-nogi-003.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-003-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-004",
+     "src": "media/gallery/sample-nogi/sample-nogi-004.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-004-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-005",
+     "src": "media/gallery/sample-nogi/sample-nogi-005.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-005-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-006",
+     "src": "media/gallery/sample-nogi/sample-nogi-006.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-006-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-007",
+     "src": "media/gallery/sample-nogi/sample-nogi-007.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-007-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-008",
+     "src": "media/gallery/sample-nogi/sample-nogi-008.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-008-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-009",
+     "src": "media/gallery/sample-nogi/sample-nogi-009.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-009-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-010",
+     "src": "media/gallery/sample-nogi/sample-nogi-010.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-010-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-011",
+     "src": "media/gallery/sample-nogi/sample-nogi-011.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-011-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-nogi-012",
+     "src": "media/gallery/sample-nogi/sample-nogi-012.jpg",
+     "thumb": "media/gallery/sample-nogi/sample-nogi-012-t.jpg",
+     "w": 900,
+     "h": 1600
+    }
+   ]
+  },
+  {
+   "slug": "sample-gi",
+   "name": "Sample: Gi competition day",
+   "date": "2026-03-15",
+   "place": "UAE",
+   "sample": true,
+   "cover": "media/gallery/sample-gi/sample-gi-001-t.jpg",
+   "count": 12,
+   "photos": [
+    {
+     "id": "sample-gi-001",
+     "src": "media/gallery/sample-gi/sample-gi-001.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-001-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-002",
+     "src": "media/gallery/sample-gi/sample-gi-002.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-002-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-003",
+     "src": "media/gallery/sample-gi/sample-gi-003.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-003-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-004",
+     "src": "media/gallery/sample-gi/sample-gi-004.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-004-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-005",
+     "src": "media/gallery/sample-gi/sample-gi-005.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-005-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-006",
+     "src": "media/gallery/sample-gi/sample-gi-006.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-006-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-007",
+     "src": "media/gallery/sample-gi/sample-gi-007.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-007-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-008",
+     "src": "media/gallery/sample-gi/sample-gi-008.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-008-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-009",
+     "src": "media/gallery/sample-gi/sample-gi-009.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-009-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-010",
+     "src": "media/gallery/sample-gi/sample-gi-010.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-010-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-011",
+     "src": "media/gallery/sample-gi/sample-gi-011.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-011-t.jpg",
+     "w": 900,
+     "h": 1600
+    },
+    {
+     "id": "sample-gi-012",
+     "src": "media/gallery/sample-gi/sample-gi-012.jpg",
+     "thumb": "media/gallery/sample-gi/sample-gi-012-t.jpg",
+     "w": 900,
+     "h": 1600
+    }
+   ]
+  }
+ ],
+ "updated": "2026-11-19"
+}

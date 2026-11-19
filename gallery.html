@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photo Gallery | BJJ Shots</title>
+<meta name="description" content="Find your competition photos from BJJ Shots. Pick your frames from the event gallery and order the full-resolution photos, delivered without the watermark.">
+<meta property="og:image" content="media/stills/s03.jpg">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+/* how it works */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 var(--gut)}
+.steps div{padding:26px 24px 28px 0;display:grid;grid-template-columns:auto 1fr;gap:4px 18px}
+.steps div + div{border-left:1px solid var(--line);padding-left:24px}
+.steps b{grid-row:span 2;font-family:var(--display);font-weight:400;font-size:44px;line-height:.9;color:var(--red)}
+.steps strong{font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.steps span{color:var(--soft);font-size:14px}
+
+/* events list */
+#events{padding:12vh var(--gut) 8vh}
+.ev-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:5vh}
+.search{display:flex;align-items:center;gap:12px;border-bottom:1px solid #3A3A40;min-width:min(360px,100%);padding:6px 0}
+.search input{flex:1;font:inherit;font-size:17px;background:transparent;border:0;color:var(--paper);outline:none;padding:8px 0}
+.search:focus-within{border-color:var(--red)}
+.evs{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 18px}
+.evs.few{grid-template-columns:repeat(2,minmax(0,560px))}
+.ev{display:block;position:relative}
+.ev .sheet{background:#0E0E0F;border-radius:6px;padding:16px 12px 12px;box-shadow:0 24px 60px rgba(0,0,0,.35);transition:transform .6s var(--ease)}
+.ev:hover .sheet{transform:translateY(-6px) rotate(-.6deg)}
+.ev .num{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--edge);margin-bottom:6px}
+.ev .frames{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:6px;aspect-ratio:4/3.1}
+.ev .frames img{width:100%;height:100%;object-fit:cover;background:#222}
+.ev .frames img:first-child{grid-row:span 2}
+.ev .meta{display:flex;justify-content:space-between;align-items:start;gap:14px;margin-top:16px}
+.ev h3{font-family:var(--display);font-weight:400;font-size:clamp(26px,2.4vw,38px);line-height:.92;text-transform:uppercase}
+.ev .meta .mono{color:var(--mute);margin-top:8px;display:block}
+.ev .count{flex:none;text-align:right;font-family:var(--display);font-size:28px;line-height:.9}
+.ev .count small{display:block;font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.14em}
+.ev .tag{position:absolute;top:26px;left:22px;background:var(--paper);color:var(--ink);padding:4px 8px;border-radius:3px;z-index:2}
+.empty{color:var(--mute);padding:4vh 0}
+.missing{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-top:10vh;padding:clamp(22px,4vw,44px);border:1px dashed #3A3A40;border-radius:14px}
+.missing h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(28px,3vw,46px);line-height:1.05}
+.missing p{color:var(--soft);margin-top:10px;max-width:520px}
+
+/* single event */
+#event{padding:16vh var(--gut) 20vh;display:none}
+body.in-event #event{display:block}
+body.in-event .list-only{display:none}
+.back{display:inline-flex;align-items:center;gap:10px;color:var(--soft);min-height:44px}
+.back:hover{color:var(--red)}
+.e-title{font-family:var(--display);font-weight:400;font-size:clamp(54px,9vw,160px);line-height:.88;text-transform:uppercase;margin:3vh 0 2vh;padding-top:.04em}
+.e-bar{position:sticky;top:62px;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 0 14px;margin-bottom:10px;background:var(--ink);box-shadow:0 14px 18px -8px var(--ink);color:var(--mute)}
+.e-bar .r{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.e-bar b{color:var(--paper);font-weight:500}
+.contact{background:#0E0E0F;border-radius:6px;padding:28px 16px 16px;display:grid;grid-template-columns:repeat(5,1fr);gap:30px 10px;grid-auto-flow:dense}
+.gph{position:relative}
+.gph.wide{grid-column:span 2}
+.gph .num{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--edge);margin-bottom:5px}
+.gph .frame{position:relative;display:block;width:100%;overflow:hidden;background:#222;border-radius:2px;outline:0 solid var(--red);outline-offset:3px;transition:outline-width .2s}
+.gph .frame img{width:100%;height:100%;object-fit:cover;-webkit-user-drag:none;user-select:none;transition:transform .6s var(--ease),filter .3s}
+.gph .frame:hover img{transform:scale(1.04)}
+.gph.sel .frame{outline-width:3px}
+.gph .pick{position:absolute;top:22px;right:6px;z-index:2;width:36px;height:36px;border-radius:50%;background:rgba(11,11,12,.6);border:1.5px solid var(--paper);display:grid;place-items:center;font-size:17px;transition:background .2s,transform .3s var(--ease)}
+.gph .pick:hover{transform:scale(1.1)}
+.gph.sel .pick{background:var(--red);border-color:var(--red)}
+.gph svg.mk{position:absolute;left:-10%;top:4%;width:120%;height:104%;pointer-events:none;overflow:visible;z-index:3;opacity:0;transition:opacity .2s}
+.gph svg.mk path{fill:none;stroke:var(--red);stroke-width:3.4;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .6s cubic-bezier(.6,0,.2,1)}
+.gph.sel svg.mk{opacity:1}
+.gph.sel svg.mk path{stroke-dashoffset:0}
+.e-help{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:22px;color:var(--mute)}
+.e-help a{color:var(--paper);border-bottom:1px solid var(--red)}
+
+/* photo viewer */
+.pv{position:fixed;inset:0;z-index:125;background:rgba(5,5,6,.96);display:grid;grid-template-rows:auto 1fr auto;opacity:0;pointer-events:none;transition:opacity .3s}
+.pv.on{opacity:1;pointer-events:auto}
+.pv .t{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;gap:16px}
+.pv .t .mono{color:var(--soft)}
+.pv .x{font-family:var(--display);font-size:18px;letter-spacing:.06em;display:flex;align-items:center;gap:10px;min-height:44px}
+.pv .x b{display:grid;place-items:center;width:44px;height:44px;border:1.5px solid var(--paper);border-radius:50%;font-family:var(--body);font-weight:400;font-size:22px}
+.pv .stage{position:relative;display:grid;place-items:center;min-height:0;overflow:hidden;padding:0 70px}
+.pv .stage img{max-width:100%;max-height:calc(100vh - 170px);max-height:calc(100svh - 170px);object-fit:contain;-webkit-user-drag:none;user-select:none;border-radius:4px}
+.pv .nav2{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(239,235,228,.5);display:grid;place-items:center;font-size:22px;background:rgba(11,11,12,.4)}
+.pv .nav2:hover{border-color:var(--paper)}
+.pv .prev{left:12px}.pv .next{right:12px}
+.pv .b{display:flex;justify-content:center;align-items:center;gap:16px;padding:16px 22px 22px;flex-wrap:wrap}
+.pv .b .mono{color:var(--mute)}
+
+/* order tray */
+.tray{position:fixed;left:calc(var(--rail) + 16px);right:16px;bottom:16px;z-index:110;background:var(--paper);color:var(--ink);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .6s var(--ease)}
+.tray.on{transform:none}
+.tray .row{display:flex;align-items:center;gap:18px;padding:14px 14px 14px 18px;flex-wrap:wrap}
+.tray .thumbs{display:flex}
+.tray .thumbs img{width:34px;height:46px;object-fit:cover;border-radius:3px;border:2px solid var(--paper);margin-left:-10px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.tray .thumbs img:first-child{margin-left:0}
+.tray .sum{flex:1;min-width:160px}
+.tray .sum b{display:block;font-family:var(--display);font-weight:400;font-size:24px;line-height:1;text-transform:uppercase}
+.tray .sum span{font-size:13px;color:#5A564F}
+.tray .acts{display:flex;gap:8px;flex-wrap:wrap}
+.tray .btn{font-size:16px;padding:11px 18px}
+.tray .btn.ghost{border-color:var(--ink);color:var(--ink)}
+.tray .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+.tray .more{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:underline;min-height:44px}
+.tray .list{display:none;max-height:40vh;overflow:auto;border-top:1px solid #CFC9BE;padding:10px 18px 16px}
+.tray.open .list{display:block}
+.tray .list h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6B675F;margin:10px 0 6px}
+.tray .list ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.tray .list li{display:flex;align-items:center;gap:8px;background:#E3DED4;border-radius:999px;padding:4px 6px 4px 4px;font-family:var(--mono);font-size:11px}
+.tray .list li img{width:26px;height:26px;border-radius:50%;object-fit:cover}
+.tray .list li button{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:14px}
+.tray .list li button:hover{background:var(--red);color:#fff}
+.tray .code{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:#6B675F;margin-top:12px}
+body.has-tray{padding-bottom:120px}
+
+@media (max-width:1100px){.evs{grid-template-columns:repeat(2,1fr)}.contact{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:760px){
+  .steps{grid-template-columns:1fr;margin:0 var(--gut)}
+  .steps div{padding:18px 0}
+  .steps div + div{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  #events{padding:9vh var(--gut) 6vh}
+  .evs,.evs.few{grid-template-columns:1fr;gap:30px}
+  .missing{grid-template-columns:1fr}
+  #event{padding:12vh var(--gut) 24vh}
+  .e-title{font-size:15vw}
+  .e-bar{top:66px}
+  .contact{grid-template-columns:repeat(2,1fr);padding:22px 8px 10px;gap:24px 8px}
+  .gph .pick{width:40px;height:40px}
+  .pv .stage{padding:0 8px}
+  .pv .nav2{display:none}
+  .tray{left:8px;right:8px;bottom:8px;border-radius:14px}
+  .tray .row{gap:8px 10px;padding:10px 10px 10px 12px}
+  .tray .thumbs img{width:26px;height:36px}
+  .tray .sum{min-width:0}
+  .tray .sum b{font-size:20px}
+  .tray .sum span{display:none}
+  .tray .more{min-height:36px}
+  .tray .acts{width:100%;flex-wrap:nowrap}
+  .tray .acts .btn{flex:1;justify-content:center;font-size:15px;padding:9px 12px;min-height:44px}
+  .tray .acts .btn.ghost{flex:0 0 auto}
+  body.has-tray{padding-bottom:150px}
+}
+@media (prefers-reduced-motion:reduce){.tray,.pv,.gph svg.mk path,.ev .sheet{transition:none}}
+</style>
+</head>
+<body data-page="gallery">
+<main>
+
+<header class="ph-head list-only">
+  <div class="slate mono"><span class="rec"><i></i>Gallery</span><span><b id="evN">–</b> events</span><span><b id="phN">–</b> photos</span><span>Full-resolution · No watermark</span></div>
+  <h1 class="ph-title"><span class="l">Photo</span><br><span class="l"><em>gallery</em></span></h1>
+  <div class="ph-sub">
+    <p>Find your competition, tap the frames you want and send us the order. You get the full-resolution photos, without the watermark, ready to post.</p>
+    <span class="mono" id="priceNote"></span>
+  </div>
+</header>
+
+<div class="steps list-only" aria-label="How buying photos works">
+  <div><b>1</b><strong>Find your event</strong><span>Every competition we shoot gets its own gallery.</span></div>
+  <div><b>2</b><strong>Pick your frames</strong><span>Tap the circle on each photo you want. Your picks stay saved on this device.</span></div>
+  <div><b>3</b><strong>Order &amp; get them</strong><span>Send the order on WhatsApp or email and we deliver the full-res files.</span></div>
+</div>
+
+<section id="events" class="list-only" aria-labelledby="evH">
+  <div class="ev-head">
+    <h2 class="h-big" id="evH">The<br><em>events</em></h2>
+    <label class="search"><span class="mono">Search</span><input id="q" type="search" placeholder="Event or city" autocomplete="off"></label>
+  </div>
+  <div class="evs" id="evs"></div>
+  <div class="missing rv">
+    <div><h3>Can't find your event?</h3><p>Galleries go up within a few days of each competition. Tell us the event, your name and your division and we'll look for your matches.</p></div>
+    <a class="btn ghost" id="askWa" target="_blank" rel="noopener">Ask on WhatsApp ↗</a>
+  </div>
+</section>
+
+<section id="event" aria-labelledby="eTitle">
+  <a class="back mono" href="gallery.html">← All events</a>
+  <h1 class="e-title" id="eTitle"></h1>
+  <div class="e-bar mono">
+    <span id="eMeta"></span>
+    <span class="r"><span><b id="eSel">0</b> picked here</span><button class="btn ghost small" id="eAll">Pick all</button></span>
+  </div>
+  <div class="contact" id="contact"></div>
+  <div class="e-help mono"><span>Previews are watermarked. Orders are delivered in full resolution.</span><span>Want a photo taken down? <a id="takedown" href="#">Tell us</a></span></div>
+</section>
+
+<section class="endband list-only">
+  <a class="big" href="contact.html"><span>Shooting<br>your event?</span><span>↗</span></a>
+</section>
+</main>
+
+<div class="pv" id="pv" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="t"><span class="mono" id="pvId"></span><button class="x" id="pvX"><span>Close</span><b>×</b></button></div>
+  <div class="stage"><img id="pvImg" alt=""><button class="nav2 prev" id="pvPrev" aria-label="Previous photo">←</button><button class="nav2 next" id="pvNext" aria-label="Next photo">→</button></div>
+  <div class="b"><span class="mono" id="pvPos"></span><button class="btn" id="pvPick">Add to order</button></div>
+</div>
+
+<aside class="tray" id="tray" aria-label="Your photo order" aria-live="polite">
+  <div class="row">
+    <div class="thumbs" id="tThumbs"></div>
+    <div class="sum"><b id="tCount">0 photos</b><span id="tPrice"></span></div>
+    <button class="more" id="tMore" aria-expanded="false">Review</button>
+    <div class="acts">
+      <a class="btn" id="tPay" target="_blank" rel="noopener" hidden>Pay now</a>
+      <a class="btn" id="tWa" target="_blank" rel="noopener">Order on WhatsApp</a>
+      <a class="btn ghost" id="tMail">Email</a>
+    </div>
+  </div>
+  <div class="list" id="tList"></div>
+</aside>
+
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(async () => {
+const { $, $$, esc, pad, json, fmtDate, wa, mail, store, CFG, reveal } = BJJ;
+const cur = CFG.currency || 'AED';
+$('#askWa').href = wa('Hi BJJ Shots, I am looking for my photos from: ');
+
+let data;
+try { data = await json('data/gallery.json'); } catch { $('#evs').innerHTML = '<p class="empty">The gallery could not load. Please try again in a moment.</p>'; return; }
+const events = data.events || [];
+const bySlug = Object.fromEntries(events.map(e => [e.slug, e]));
+const photoIndex = {};
+events.forEach(e => e.photos.forEach((p, i) => photoIndex[p.id] = { ...p, ev: e, i }));
+$('#evN').textContent = events.length;
+$('#phN').textContent = events.reduce((n, e) => n + e.count, 0);
+
+/* ---- pricing ---- */
+const price = n => {
+  if (!CFG.photoPrice) return null;
+  const b = CFG.photoBundle;
+  if (b && n >= b.count) { const sets = Math.floor(n / b.count); return sets * b.price + (n - sets * b.count) * CFG.photoPrice; }
+  return n * CFG.photoPrice;
+};
+$('#priceNote').textContent = CFG.photoPrice
+  ? `${cur} ${CFG.photoPrice} per photo${CFG.photoBundle ? ` · ${CFG.photoBundle.count} for ${cur} ${CFG.photoBundle.price}` : ''}`
+  : 'Prices confirmed with your order';
+
+/* ---- the order (saved on this device) ---- */
+let order = store.get('bjj-order', []).filter(id => photoIndex[id]);
+let code = store.get('bjj-order-code', '');
+if (!code) { code = 'BJJ-' + Math.random().toString(36).slice(2, 7).toUpperCase(); store.set('bjj-order-code', code); }
+const tray = $('#tray');
+const saveOrder = () => { store.set('bjj-order', order); renderTray(); syncPicks(); };
+const toggle = id => { order = order.includes(id) ? order.filter(x => x !== id) : [...order, id]; saveOrder(); };
+const orderText = () => {
+  const groups = {};
+  order.forEach(id => { const p = photoIndex[id]; (groups[p.ev.slug] ||= []).push(id); });
+  const lines = Object.entries(groups).map(([s, ids]) => `• ${bySlug[s].name} (${fmtDate(bySlug[s].date)}): ${ids.join(', ')}`);
+  const tot = price(order.length);
+  return `Hi BJJ Shots, I'd like to buy ${order.length} photo${order.length > 1 ? 's' : ''}.\nOrder ${code}\n\n${lines.join('\n')}\n\n${tot ? `Total: ${cur} ${tot}\n` : ''}My name: \nDivision / belt: `;
+};
+function renderTray() {
+  const n = order.length;
+  tray.classList.toggle('on', n > 0);
+  document.body.classList.toggle('has-tray', n > 0);
+  tray.inert = n === 0;
+  if (!n) { tray.classList.remove('open'); return; }
+  $('#tThumbs').innerHTML = order.slice(-4).map(id => `<img src="${esc(photoIndex[id].thumb)}" alt="">`).join('');
+  $('#tCount').textContent = `${n} photo${n > 1 ? 's' : ''} picked`;
+  const tot = price(n);
+  $('#tPrice').textContent = tot ? `${cur} ${tot} · full resolution, no watermark` : 'Price confirmed on WhatsApp · full resolution, no watermark';
+  const txt = orderText();
+  $('#tWa').href = wa(txt);
+  $('#tMail').href = mail(`Photo order ${code}`, txt);
+  const pay = $('#tPay');
+  if (CFG.photoCheckoutUrl) { pay.hidden = false; pay.href = CFG.photoCheckoutUrl + (CFG.photoCheckoutUrl.includes('?') ? '&' : '?') + 'client_reference_id=' + code; }
+  const groups = {};
+  order.forEach(id => (groups[photoIndex[id].ev.slug] ||= []).push(id));
+  $('#tList').innerHTML = Object.entries(groups).map(([s, ids]) => `<h4>${esc(bySlug[s].name)}</h4><ul>${ids.map(id =>
+    `<li><img src="${esc(photoIndex[id].thumb)}" alt="">${esc(id)}<button data-rm="${esc(id)}" aria-label="Remove ${esc(id)}">×</button></li>`).join('')}</ul>`).join('')
+    + `<p class="code">Order code ${esc(code)}. ${CFG.photoCheckoutUrl ? 'If you pay online, keep this code: we use it to match your payment to your photos.' : 'It is included in your message.'} <button class="more" id="tClear">Clear order</button></p>`;
+}
+$('#tMore').addEventListener('click', () => { const o = tray.classList.toggle('open'); $('#tMore').setAttribute('aria-expanded', o); $('#tMore').textContent = o ? 'Hide' : 'Review'; });
+$('#tList').addEventListener('click', e => {
+  const rm = e.target.closest('[data-rm]'); if (rm) toggle(rm.dataset.rm);
+  if (e.target.id === 'tClear') { order = []; saveOrder(); }
+});
+
+/* ---- events list ---- */
+const evCard = (e, i) => {
+  const fr = [e.cover, ...e.photos.filter(p => p.thumb !== e.cover).slice(0, 2).map(p => p.thumb)];
+  return `<a class="ev rv" href="?e=${encodeURIComponent(e.slug)}" data-q="${esc((e.name + ' ' + e.place + ' ' + e.date).toLowerCase())}" style="transition-delay:${(i % 3) * .07}s">
+    ${e.sample ? '<span class="tag mono">Sample</span>' : ''}
+    <div class="sheet"><div class="num"><span>${esc(e.date)}</span><span>▸ ${pad(e.count, 3)} FR</span></div>
+      <div class="frames">${fr.map(s => `<img src="${esc(s)}" alt="" loading="lazy">`).join('')}</div></div>
+    <div class="meta"><div><h3>${esc(e.name.replace(/^Sample:\s*/, ''))}</h3><span class="mono">${esc(fmtDate(e.date))}${e.place ? ' · ' + esc(e.place) : ''}</span></div>
+      <div class="count">${e.count}<small>Photos</small></div></div></a>`;
+};
+$('#evs').classList.toggle('few', events.length <= 2);
+$('#evs').innerHTML = events.length ? events.map(evCard).join('') : '<p class="empty">The first galleries are on their way.</p>';
+reveal($('#evs'));
+$('#q').addEventListener('input', e => {
+  const q = e.target.value.trim().toLowerCase();
+  $$('#evs .ev').forEach(c => c.style.display = !q || c.dataset.q.includes(q) ? '' : 'none');
+});
+
+/* ---- single event ---- */
+const CIRCLE = 'M52 4 C80 3 97 24 96 50 C95 80 74 97 47 96 C20 95 3 75 4 49 C5 22 27 4 55 7 C64 8 72 12 77 16';
+let ev = null;
+function openEvent(slug) {
+  ev = bySlug[slug];
+  if (!ev) { document.body.classList.remove('in-event'); return; }
+  document.body.classList.add('in-event');
+  document.title = `${ev.name} · Photos | BJJ Shots`;
+  $('#eTitle').textContent = ev.name.replace(/^Sample:\s*/, '');
+  $('#eMeta').innerHTML = `${esc(fmtDate(ev.date))}${ev.place ? ' · ' + esc(ev.place) : ''} · <b>${ev.count}</b> photos${ev.sample ? ' · Sample frames from our video coverage' : ''}`;
+  $('#takedown').href = mail(`Take-down request: ${ev.name}`, 'Photo ID(s): \nReason: ');
+  $('#contact').innerHTML = ev.photos.map((p, i) => `
+    <div class="gph${p.w > p.h ? ' wide' : ''}" data-id="${esc(p.id)}">
+      <div class="num"><span>${pad(i + 1, 3)}</span><span>▸${pad(i + 1, 3)}A</span></div>
+      <button class="frame" style="aspect-ratio:${p.w}/${p.h}" data-cursor="hide" data-open="${i}" aria-label="View photo ${esc(p.id)}"><img src="${esc(p.thumb)}" alt="Photo ${i + 1} from ${esc(ev.name)}" loading="lazy" draggable="false"></button>
+      <svg class="mk" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="${CIRCLE}" pathLength="1"/></svg>
+      <button class="pick" data-pick="${esc(p.id)}" aria-pressed="false" aria-label="Pick ${esc(p.id)}">+</button>
+    </div>`).join('');
+  syncPicks();
+  scrollTo(0, 0);
+}
+function syncPicks() {
+  if (!ev) return;
+  let n = 0;
+  $$('.gph', $('#contact')).forEach(g => {
+    const on = order.includes(g.dataset.id); n += on;
+    g.classList.toggle('sel', on);
+    const b = $('.pick', g); b.setAttribute('aria-pressed', on); b.textContent = on ? '✓' : '+';
+  });
+  $('#eSel').textContent = n;
+  $('#eAll').textContent = n === ev.count ? 'Unpick all' : 'Pick all';
+  if (pv.classList.contains('on')) syncViewer();
+}
+$('#eAll').addEventListener('click', () => {
+  const ids = ev.photos.map(p => p.id), all = ids.every(id => order.includes(id));
+  order = all ? order.filter(id => !ids.includes(id)) : [...new Set([...order, ...ids])];
+  saveOrder();
+});
+$('#contact').addEventListener('click', e => {
+  const pk = e.target.closest('[data-pick]'); if (pk) return toggle(pk.dataset.pick);
+  const op = e.target.closest('[data-open]'); if (op) openViewer(+op.dataset.open);
+});
+$('#contact').addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+
+/* ---- photo viewer ---- */
+const pv = $('#pv'), pvImg = $('#pvImg');
+let pi = 0, pvFrom = null;
+function syncViewer() {
+  const p = ev.photos[pi];
+  pvImg.src = p.src; pvImg.alt = `Photo ${pi + 1} from ${ev.name}`;
+  $('#pvId').textContent = p.id.toUpperCase();
+  $('#pvPos').textContent = `${pi + 1} / ${ev.count}`;
+  const on = order.includes(p.id);
+  $('#pvPick').textContent = on ? '✓ In your order' : 'Add to order';
+  $('#pvPick').classList.toggle('ghost', on);
+  const nx = ev.photos[(pi + 1) % ev.count]; new Image().src = nx.src;
+}
+function openViewer(i) { pvFrom = document.activeElement; pi = i; syncViewer(); pv.classList.add('on'); document.documentElement.style.overflow = 'hidden'; $('#pvX').focus(); }
+function closeViewer() { pv.classList.remove('on'); document.documentElement.style.overflow = ''; pvFrom?.focus?.(); }
+const step = d => { pi = (pi + d + ev.count) % ev.count; syncViewer(); };
+$('#pvX').addEventListener('click', closeViewer);
+$('#pvPrev').addEventListener('click', () => step(-1));
+$('#pvNext').addEventListener('click', () => step(1));
+$('#pvPick').addEventListener('click', () => toggle(ev.photos[pi].id));
+pvImg.addEventListener('contextmenu', e => e.preventDefault());
+addEventListener('keydown', e => {
+  if (!pv.classList.contains('on')) return;
+  if (e.key === 'Escape') closeViewer();
+  else if (e.key === 'ArrowLeft') step(-1);
+  else if (e.key === 'ArrowRight') step(1);
+});
+let tx = null;
+pv.addEventListener('touchstart', e => tx = e.touches[0].clientX, { passive: true });
+pv.addEventListener('touchend', e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1); tx = null; });
+
+/* ---- routing: gallery.html?e=slug ---- */
+const route = () => { const s = new URLSearchParams(location.search).get('e'); if (s) openEvent(s); else { ev = null; document.body.classList.remove('in-event'); } };
+document.addEventListener('click', e => {
+  const a = e.target.closest('a.ev, a.back'); if (!a || e.metaKey || e.ctrlKey) return;
+  e.preventDefault(); history.pushState(null, '', a.getAttribute('href')); route();
+});
+addEventListener('popstate', route);
+route();
+renderTray();
+})();
+</script>
+</body>
+</html>
