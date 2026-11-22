@@ -500,10 +500,11 @@ if (fine) $$('.round').forEach(rd => {
   rd.addEventListener('pointerleave', () => { peek.classList.remove('on'); peekV.pause(); });
 });
 
-/* ---- the numbers (assets/config.js → stats) ---- */
+/* ---- the numbers: assets/config.js → stats, then data/instagram.json (posts + followers, written by the Instagram sync) ---- */
 const ST = Object.assign({ views: '7M+', posts: 557, followers: 5782 }, BJJ.CFG.stats);
 const fmt = v => typeof v === 'number' ? v.toLocaleString('en-US') : String(v);
-$$('[data-stat]').forEach(el => { if (!el.classList.contains('odo')) el.textContent = fmt(ST[el.dataset.stat]); });
+const paintStats = () => $$('[data-stat]').forEach(el => { if (!el.classList.contains('odo')) el.textContent = fmt(ST[el.dataset.stat]); });
+paintStats();
 
 /* ---- scoreboard: each digit is a column of 0-9 that scrolls up to its value, the right-hand digits spin longest ---- */
 function buildOdo(el, raw) {
@@ -516,14 +517,17 @@ function buildOdo(el, raw) {
   }).join('') + (suf ? `<span aria-hidden="true">${esc(suf)}</span>` : '');
 }
 const odos = $$('.odo[data-stat]');
-odos.forEach(el => buildOdo(el, fmt(ST[el.dataset.stat])));
+const live = json('data/instagram.json').then(d => {
+  if (Number.isFinite(d.posts) && d.posts > 0) ST.posts = d.posts;
+  if (Number.isFinite(d.followers) && d.followers > 0) ST.followers = d.followers;
+}).catch(() => {}).finally(() => { paintStats(); odos.forEach(el => buildOdo(el, fmt(ST[el.dataset.stat]))); });
 let clockT0 = 0;
 new IntersectionObserver((es, o) => es.forEach(e => {
   if (!e.isIntersecting) return;
-  odos.forEach(el => $$('.col', el).forEach((col, i) => {
+  live.then(() => requestAnimationFrame(() => odos.forEach(el => $$('.col', el).forEach((col, i) => {
     col.style.transition = reduce ? 'none' : `transform ${1.5 + i * .3}s cubic-bezier(.16,.84,.24,1) ${.1 + i * .05}s`;
     col.style.transform = `translateY(-${col.dataset.n}em)`;
-  }));
+  }))));
   clockT0 = performance.now(); o.disconnect();
 }), { threshold: .4 }).observe($('#board'));
 
