@@ -7,6 +7,10 @@ window.BJJ_CONFIG = {
   tiktok: 'bjjshots',
   youtube: 'BJJShotss',
 
+  // The home page numbers: the hero's reach line, the scoreboard (views + posts roll up) and the follower line under it.
+  // views is text ("7M+"); posts and followers are plain numbers.
+  stats: { views: '7M+', posts: 557, followers: 5782 },   // from his Instagram profile, 2026-11-22
+
   // Booking page: paste the payment link for competition bookings here when it exists
   // (Stripe Payment Link, Ziina, PayPal...). While it is null the page asks for a brief instead.
   bookingUrl: null,

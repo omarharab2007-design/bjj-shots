@@ -18,9 +18,9 @@
 #offer{padding:10vh var(--gut) 8vh}
 .packs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .pack{border:1px solid var(--line);border-radius:14px;padding:28px 24px 26px;display:flex;flex-direction:column;gap:14px;background:var(--ink2);transition:border-color .3s,transform .5s var(--ease)}
-.pack:hover{border-color:var(--red);transform:translateY(-6px)}
+.pack:hover{border-color:var(--accent);transform:translateY(-6px)}
 .pack .mono{color:var(--mute)}
-.pack .mono b{color:var(--red);font-weight:500}
+.pack .mono b{color:var(--accent);font-weight:500}
 .pack h3{font-family:var(--display);font-weight:400;font-size:clamp(32px,3vw,48px);line-height:.9;text-transform:uppercase}
 .pack p{color:var(--soft);font-size:15px}
 .pack ul{list-style:none;margin-top:auto;border-top:1px solid var(--line);padding-top:14px;display:grid;gap:8px}
@@ -33,14 +33,14 @@
 .work-head p{max-width:320px;color:var(--soft);font-size:15px}
 .proj{display:grid;grid-template-columns:1fr 1.15fr;gap:6vw;align-items:center;padding:8vh 0;border-top:1px solid var(--line)}
 .proj:nth-child(even) .reels{order:-1}
-.proj .no{font-family:var(--display);font-size:20px;color:var(--red)}
+.proj .no{font-family:var(--display);font-size:20px;color:var(--accent)}
 .proj .kind{color:var(--mute);margin:10px 0 16px;display:block}
 .proj h3{font-family:var(--display);font-weight:400;font-size:clamp(44px,5.4vw,96px);line-height:.86;text-transform:uppercase}
-.proj .client{font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.2vw,34px);color:var(--red);margin-top:10px}
+.proj .client{font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.2vw,34px);color:var(--tone);margin-top:10px}
 .proj .logo{height:46px;width:auto;margin-top:16px;filter:grayscale(1) brightness(1.6)}
 .proj p{color:var(--soft);font-size:16px;margin-top:22px;max-width:480px}
 .proj ul{list-style:none;margin-top:24px;display:flex;flex-wrap:wrap;gap:8px}
-.proj li{border:1px solid #3A3A40;border-radius:999px;padding:8px 14px;font-size:13px}
+.proj li{border:1px solid #3A3A3A;border-radius:999px;padding:8px 14px;font-size:13px}
 .reels{position:relative;height:min(64vh,620px);display:flex;justify-content:center;align-items:center}
 .reels .fcard{position:absolute;width:min(34%,250px);transition:transform .9s var(--ease)}
 .reels .fcard:nth-child(1){transform:translateX(-62%) rotate(-7deg) translateY(18px)}
@@ -53,7 +53,7 @@
 /* process */
 #process{padding:12vh var(--gut)}
 .flow{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);position:relative}
-.flow::before{content:"";position:absolute;left:0;top:-1px;height:3px;width:100%;background:var(--red);transform-origin:left;transform:scaleX(0);transition:transform 1.6s var(--ease)}
+.flow::before{content:"";position:absolute;left:0;top:-1px;height:3px;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(0);transition:transform 1.6s var(--ease)}
 .flow.in::before{transform:scaleX(1)}
 .flow div{padding:26px 22px 0 0}
 .flow b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--edge);margin-bottom:16px}
@@ -67,7 +67,7 @@
 .qa summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;cursor:pointer;font-family:var(--display);font-size:clamp(22px,2.2vw,34px);text-transform:uppercase;line-height:1}
 .qa summary::-webkit-details-marker{display:none}
 .qa summary::after{content:"+";font-family:var(--body);font-size:28px;transition:transform .3s}
-.qa details[open] summary::after{transform:rotate(45deg);color:var(--red)}
+.qa details[open] summary::after{transform:rotate(45deg);color:var(--accent)}
 .qa details p{color:var(--soft);max-width:680px;padding:0 0 24px}
 
 @media (max-width:1100px){.packs{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr 1fr;gap:30px 0}}
@@ -101,7 +101,7 @@
 <section id="offer" aria-labelledby="offerH">
   <div class="kicker mono"><b>(01)</b> <span id="offerH">What your gym gets</span></div>
   <div class="packs">
-    <div class="pack rv"><span class="mono"><b>01</b> Monthly</span><h3>Content<br>package</h3><p>A steady stream of training footage and promo videos that shows off your classes, athletes and community.</p>
+    <div class="pack rv"><span class="mono"><b>01</b> Monthly</span><h3>Content<br>package</h3><p>Every month, training footage and promo videos that show off your classes, athletes and community, and bring new members through the door.</p>
       <ul><li>Class and drilling footage</li><li>Reels cut for every platform</li><li>Kept consistent month to month</li></ul></div>
     <div class="pack rv" style="transition-delay:.08s"><span class="mono"><b>02</b> Competition day</span><h3>Team<br>coverage</h3><p>We follow your team through the tournament and deliver highlights your athletes can share and remember.</p>
       <ul><li>Match highlights per athlete</li><li>A team film for the gym</li><li>Photo gallery from the day</li></ul></div>
