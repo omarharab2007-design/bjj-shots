@@ -1,0 +1,79 @@
+# Instagram → website, every 6 hours: newest Reels on the Highlights page and the home "Latest cuts",
+# post and follower numbers on the home scoreboard. Script: tools/ig-sync.mjs. Setup: GUIDE.md, "Live Instagram".
+# Secrets: IG_TOKEN (Instagram API with Instagram Login, long-lived) and GH_PAT (fine-grained, this repo,
+# Secrets + Contents read/write) so the weekly step can save the renewed token.
+name: Instagram sync
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'   # sync
+    - cron: '0 4 * * 1'      # Mondays: renew the token too (it lasts 60 days)
+  workflow_dispatch:
+    inputs:
+      refresh_token:
+        description: 'Also renew the Instagram token now'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check the Instagram connection
+        id: ready
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+        run: |
+          if [ -z "$IG_TOKEN" ]; then echo "::notice::IG_TOKEN is not set yet (GUIDE.md, Live Instagram). Skipping."; echo "ok=false" >> "$GITHUB_OUTPUT"; else echo "ok=true" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: actions/checkout@v4
+        if: steps.ready.outputs.ok == 'true'
+        with:
+          token: ${{ secrets.GH_PAT || github.token }}
+
+      - uses: actions/setup-node@v4
+        if: steps.ready.outputs.ok == 'true'
+        with:
+          node-version: 22
+
+      - name: Install ffmpeg
+        if: steps.ready.outputs.ok == 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+
+      - name: Renew the Instagram token
+        if: steps.ready.outputs.ok == 'true' && (github.event.schedule == '0 4 * * 1' || inputs.refresh_token)
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          NEW=$(curl -sf "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=$IG_TOKEN" | jq -r '.access_token // empty') || true
+          if [ -z "$NEW" ]; then echo "::error::Could not renew the Instagram token. It may have been revoked: make a new one (GUIDE.md, Part B5)."; exit 1; fi
+          echo "::add-mask::$NEW"
+          gh secret set IG_TOKEN --body "$NEW" --repo "$GITHUB_REPOSITORY"
+          echo "Token renewed."
+
+      - name: Pull from Instagram
+        if: steps.ready.outputs.ok == 'true'
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+        run: node tools/ig-sync.mjs
+
+      - name: Publish
+        if: steps.ready.outputs.ok == 'true'
+        run: |
+          git config user.name "BJJ Shots sync"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/highlights.json data/instagram.json media/ig
+          if git diff --cached --quiet; then echo "Nothing new on Instagram."; exit 0; fi
+          git commit -q -m "Instagram sync $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull -q --rebase
+          git push -q
+          echo "Published."
