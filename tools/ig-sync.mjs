@@ -3,7 +3,8 @@
 //  1. Reads @bjj__shots's profile numbers (posts, followers) → data/instagram.json (the home page scoreboard reads it).
 //  2. Reads his newest Reels, downloads each new one (Instagram's video links expire), makes the 720 px video,
 //     the 6 s silent preview loop and the poster in media/ig/, and rewrites data/highlights.json (newest first).
-// Env: IG_TOKEN (Instagram API with Instagram Login, long-lived token). Never printed.
+// Env: IG_TOKEN, never printed. Either an Instagram-login token (graph.instagram.com) or a Facebook Login for Business
+// token from the app's unified-login config (graph.facebook.com + the Instagram account it was granted). Detected automatically.
 // Test without a token: IG_FIXTURE=fixture.json, a file shaped { profile: {...}, media: [...] } whose media_url values are local paths.
 // Options: --keep 14 (how many synced reels the page keeps), --dry (no file writes)
 // A reel whose caption has #nosite stays off the site. Caption line 1 = title; #nogi / #kids / #juniors set the tag.
@@ -17,7 +18,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i > -1 ? (process.argv[i + 1] && !process.argv[i + 1].startsWith('--') ? process.argv[i + 1] : true) : d; };
 const KEEP = +arg('keep', 14), DRY = !!arg('dry', false);
 const TOKEN = process.env.IG_TOKEN, FIXTURE = process.env.IG_FIXTURE;
-const API = 'https://graph.instagram.com/v21.0';
+const IG_API = 'https://graph.instagram.com/v21.0', FB_API = 'https://graph.facebook.com/v21.0';
+let API = IG_API, ME = 'me';
 if (!TOKEN && !FIXTURE) { console.error('IG_TOKEN is not set (GitHub: Settings → Secrets → Actions → IG_TOKEN).'); process.exit(1); }
 
 // never let the token reach a log line
@@ -34,11 +36,31 @@ async function get(pathAndQuery) {
   }
 }
 
+// Which kind of token is it? Instagram-login tokens read graph.instagram.com/me. Unified-login (Facebook Login for
+// Business) tokens read graph.facebook.com/<instagram account id>, found from the token's grants or his linked Page.
+async function pickApi() {
+  try { await get('me?fields=id'); return; } catch (e) { if (!/API 40[013]:/.test(e.message)) throw e; }
+  API = FB_API;
+  let id;
+  try {
+    const dbg = await get(`debug_token?input_token=${encodeURIComponent(TOKEN)}`);
+    id = (dbg.data?.granular_scopes || []).filter(g => /^instagram_/.test(g.scope)).flatMap(g => g.target_ids || [])[0];
+  } catch {}
+  if (!id) {
+    const acc = await get('me/accounts?fields=instagram_business_account');
+    id = (acc.data || []).find(p => p.instagram_business_account)?.instagram_business_account.id;
+  }
+  if (!id) throw new Error('The token works on Facebook but has no Instagram account attached. Redo the login and tick @bjj__shots.');
+  ME = id;
+  console.log('Facebook-login token: reading the Instagram account through graph.facebook.com.');
+}
+
 async function readInstagram() {
   if (FIXTURE) return JSON.parse(fs.readFileSync(FIXTURE, 'utf8'));
-  const profile = await get('me?fields=id,username,followers_count,media_count');
+  await pickApi();
+  const profile = await get(`${ME}?fields=id,username,followers_count,media_count`);
   const media = [];
-  let page = await get('me/media?fields=id,caption,media_type,media_product_type,media_url,thumbnail_url,permalink,timestamp&limit=50');
+  let page = await get(`${ME}/media?fields=id,caption,media_type,media_product_type,media_url,thumbnail_url,permalink,timestamp&limit=50`);
   for (let n = 0; ; n++) {
     media.push(...(page.data || []));
     const reels = media.filter(isReel).length;
