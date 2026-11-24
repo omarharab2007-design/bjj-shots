@@ -3,7 +3,7 @@
 # commits and pushes. Pages redeploys in about a minute.
 #   tools/publish.sh "Add AJP Abu Dhabi gallery"
 # Once the Instagram sync runs (.github/workflows/instagram.yml), GitHub owns data/highlights.json, data/instagram.json
-# and media/ig/: this script pulls them down into the local copy first and never overwrites them.
+# and media/ig/ (the Drive sync owns data/highlights.json and media/drive/): this script pulls them down into the local copy first and never overwrites them.
 set -e
 cd "${0:A:h}/.."
 MSG="${1:-Update site}"
@@ -16,11 +16,18 @@ if grep -q '"source": "instagram"' deploy/data/highlights.json 2>/dev/null; then
   cp deploy/data/highlights.json deploy/data/instagram.json data/
   rsync -a --delete deploy/media/ig/ media/ig/
   echo "Pulled the latest Instagram sync into the local copy."
+elif grep -q '"source": "drive"' deploy/data/highlights.json 2>/dev/null; then
+  # the Drive sync (.github/workflows/drive.yml) owns the highlights list and media/drive/
+  SYNCED=(--exclude 'data/highlights.json' --exclude 'media/drive')
+  mkdir -p media/drive
+  cp deploy/data/highlights.json data/
+  rsync -a --delete deploy/media/drive/ media/drive/
+  echo "Pulled the latest Drive sync into the local copy."
 fi
 rsync -a --delete \
   --exclude '.git' --exclude '.nojekyll' \
   --exclude 'deploy' --exclude 'raw' --exclude 'urls.txt' --exclude 'encode.sh' \
-  --exclude 'tools/originals' --exclude 'GUIDE.md' --exclude '.DS_Store' "${SYNCED[@]}" \
+  --exclude 'tools/originals' --exclude 'GUIDE.md' --exclude '.github' --exclude '*.pdf' --exclude '.DS_Store' "${SYNCED[@]}" \
   ./ deploy/
 cd deploy
 git add -A
