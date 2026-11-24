@@ -1,0 +1,63 @@
+# Google Drive → website, every hour: new reels in the shared Drive folder go onto the Highlights page
+# (and the home "Latest cuts"); videos deleted from the folder come off. Script: tools/drive-sync.mjs.
+# Secrets: DRIVE_FOLDER_ID (id at the end of the folder link) and DRIVE_API_KEY (Google Cloud API key, Drive API only).
+# The push uses GH_PAT so Hostinger's auto-deploy webhook fires like a normal push.
+name: Drive sync
+
+on:
+  schedule:
+    - cron: '41 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Check the Drive settings
+        id: ready
+        env:
+          FOLDER: ${{ secrets.DRIVE_FOLDER_ID }}
+          KEY: ${{ secrets.DRIVE_API_KEY }}
+        run: |
+          if [ -z "$FOLDER" ] || [ -z "$KEY" ]; then echo "::notice::DRIVE_FOLDER_ID / DRIVE_API_KEY not set yet. Skipping."; echo "ok=false" >> "$GITHUB_OUTPUT"; else echo "ok=true" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: actions/checkout@v4
+        if: steps.ready.outputs.ok == 'true'
+        with:
+          token: ${{ secrets.GH_PAT || github.token }}
+
+      - uses: actions/setup-node@v4
+        if: steps.ready.outputs.ok == 'true'
+        with:
+          node-version: 22
+
+      - name: Install ffmpeg
+        if: steps.ready.outputs.ok == 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+
+      - name: Pull new reels from Drive
+        if: steps.ready.outputs.ok == 'true'
+        env:
+          DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
+          DRIVE_API_KEY: ${{ secrets.DRIVE_API_KEY }}
+        run: node tools/drive-sync.mjs
+
+      - name: Publish
+        if: steps.ready.outputs.ok == 'true'
+        run: |
+          git config user.name "BJJ Shots sync"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A data media
+          if git diff --cached --quiet; then echo "Nothing new in Drive."; exit 0; fi
+          git commit -q -m "Drive sync $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull -q --rebase
+          git push -q
+          echo "Published."
